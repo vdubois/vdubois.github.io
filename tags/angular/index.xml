@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Angular on Yet another dev blog</title>
+    <link>https://vdubois.github.io/tags/angular/</link>
+    <description>Recent content in Angular on Yet another dev blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>fr-fr</language>
+    <lastBuildDate>Sat, 16 Dec 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://vdubois.github.io/tags/angular/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Formation Angular De Zéro à Ninja Par Ninja Squad</title>
+      <link>https://vdubois.github.io/2017/12/formation-angular-de-z%C3%A9ro-%C3%A0-ninja-par-ninja-squad/</link>
+      <pubDate>Sat, 16 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://vdubois.github.io/2017/12/formation-angular-de-z%C3%A9ro-%C3%A0-ninja-par-ninja-squad/</guid>
+      <description>Fin octobre, j&amp;rsquo;ai suivi la formation &amp;ldquo;Angular : de Zéro à Ninja animée par Jean Baptiste Nizet dans les locaux de ma société.
+Je tenais à faire un petit retour car cette formation est d&amp;rsquo;une qualité très élevée. Non seulement on apprend tout ce qui est nécessaire à être opérationnel sur du développement d&amp;rsquo;applications Angular, mais en plus, Ninja Squad nous donne accès à sa plateforme d&amp;rsquo;exercices de formation en ligne ainsi qu&amp;rsquo;à son ebook Angular.</description>
+    </item>
+    
+  </channel>
+</rss>

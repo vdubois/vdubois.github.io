@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="fr-fr">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>Optimiser ses requêtes DynamoDB</title>
+
+  
+  
+
+
+
+
+
+  
+  <meta name="author" content="Vincent Dubois" />
+  <meta name="description" content="Récemment j&amp;rsquo;ai rencontré dans le cadre de mon projet quelques petits soucis de performances lors de l&amp;rsquo;utilisation de DynamoDB.
+Le tout premier problème rencontré est un problème assez évident : nous avions mis systématiquement sur tous nos différents environnements AWS des capacités en lecture et en écriture sur nos tables DynamoDB à 1. Cela veut dire que DynamoDB pouvait traiter une lecture ou une écriture en parallèle. L&amp;rsquo;application a bien fonctionné jusqu&amp;rsquo;au moment où nous avons eu quelques données et un peu de traffic car nos testeurs et ceux du client utilisaient l&amp;rsquo;application." />
+
+  
+  
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@vdubois" />
+    <meta name="twitter:title" content="Optimiser ses requêtes DynamoDB" />
+    <meta name="twitter:description" content="Récemment j&amp;rsquo;ai rencontré dans le cadre de mon projet quelques petits soucis de performances lors de l&amp;rsquo;utilisation de DynamoDB.
+Le tout premier problème rencontré est un problème assez évident : nous avions mis systématiquement sur tous nos différents environnements AWS des capacités en lecture et en écriture sur nos tables DynamoDB à 1. Cela veut dire que DynamoDB pouvait traiter une lecture ou une écriture en parallèle. L&amp;rsquo;application a bien fonctionné jusqu&amp;rsquo;au moment où nous avons eu quelques données et un peu de traffic car nos testeurs et ceux du client utilisaient l&amp;rsquo;application." />
+    <meta name="twitter:image" content="https://vdubois.github.io/img/avatar.jpg" />
+  
+
+  
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Optimiser ses requêtes DynamoDB" />
+  <meta property="og:description" content="Récemment j&amp;rsquo;ai rencontré dans le cadre de mon projet quelques petits soucis de performances lors de l&amp;rsquo;utilisation de DynamoDB.
+Le tout premier problème rencontré est un problème assez évident : nous avions mis systématiquement sur tous nos différents environnements AWS des capacités en lecture et en écriture sur nos tables DynamoDB à 1. Cela veut dire que DynamoDB pouvait traiter une lecture ou une écriture en parallèle. L&amp;rsquo;application a bien fonctionné jusqu&amp;rsquo;au moment où nous avons eu quelques données et un peu de traffic car nos testeurs et ceux du client utilisaient l&amp;rsquo;application." />
+  <meta property="og:url" content="https://vdubois.github.io/2018/02/optimiser-ses-requ%C3%AAtes-dynamodb/" />
+  <meta property="og:image" content="https://vdubois.github.io/img/avatar.jpg" />
+
+
+
+
+<meta name="generator" content="Hugo 0.36" />
+
+
+<link rel="canonical" href="https://vdubois.github.io/2018/02/optimiser-ses-requ%C3%AAtes-dynamodb/" />
+<link rel="alternative" href="/index.xml" title="Yet another dev blog" type="application/atom+xml" />
+
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="format-detection" content="telephone=no,email=no,adress=no" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+
+
+<meta name="robots" content="index,follow" />
+<meta name="referrer" content="origin-when-cross-origin" />
+
+
+
+
+
+
+
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="Yet another dev blog" />
+<meta name="msapplication-tooltip" content="Yet another dev blog" />
+<meta name='msapplication-navbutton-color' content="#5fbf5e" />
+<meta name="msapplication-TileColor" content="#5fbf5e" />
+<meta name="msapplication-TileImage" content="/img/tile-image-windows.png" />
+<link rel="icon" href="/img/favicon.ico" />
+<link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png" />
+<link rel="icon" sizes="192x192" href="/img/touch-icon-android.png" />
+<link rel="apple-touch-icon" href="/img/touch-icon-apple.png" />
+<link rel="mask-icon" href="/img/safari-pinned-tab.svg" color="#5fbf5e" />
+
+
+
+<link rel="stylesheet" href="//cdn.bootcss.com/video.js/6.2.8/alt/video-js-cdn.min.css" />
+
+<link rel="stylesheet" href="/css/bundle.css" />
+
+
+  
+  <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <script src="//cdn.bootcss.com/video.js/6.2.8/ie8/videojs-ie8.min.js"></script>
+  <![endif]-->
+
+<!--[if lte IE 11]>
+    <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
+  <![endif]-->
+
+
+<script src="//cdn.bootcss.com/object-fit-images/3.2.3/ofi.min.js"></script>
+
+
+<script src="//cdn.bootcss.com/smooth-scroll/12.1.4/js/smooth-scroll.polyfills.min.js"></script>
+
+
+</head>
+  <body>
+    
+    <div class="suspension">
+      <a title="Go to top" class="to-top is-hide"><span class="icon icon-up"></span></a>
+      
+        
+      
+    </div>
+    
+    
+  <header class="site-header">
+  <img class="avatar" src="http://dubois.vct.free.fr/vincent.png" alt="Avatar">
+  
+  <h2 class="title">Yet another dev blog</h2>
+  
+  <p class="subtitle"></p>
+  <button class="menu-toggle" type="button">
+    <span class="icon icon-menu"></span>
+  </button>
+  <nav class="site-menu collapsed">
+    <h2 class="offscreen">Menu principal</h2>
+    <ul class="menu-list">
+      
+      
+      
+      
+        <li class="menu-item
+            
+            
+            
+              is-active
+            ">
+            <a href="/">Articles</a>
+          </li>
+      
+        <li class="menu-item
+            
+            
+            ">
+            <a href="https://github.com/vdubois">Github</a>
+          </li>
+      
+        <li class="menu-item
+            
+            
+            ">
+            <a href="/tags/">Tags</a>
+          </li>
+      
+    </ul>
+  </nav>
+  <nav class="social-menu collapsed">
+    <h2 class="offscreen">R&eacute;seaux sociaux</h2>
+    <ul class="social-list">
+
+      
+      <li class="social-item">
+        <a href="mailto:dubois.vct@free.fr" title="Email"><span class="icon icon-email"></span></a>
+      </li>
+
+      
+      <li class="social-item">
+        <a href="//github.com/vdubois" title="GitHub"><span class="icon icon-github"></span></a>
+      </li>
+
+      <li class="social-item">
+        <a href="//twitter.com/vdubois" title="Twitter"><span class="icon icon-twitter"></span></a>
+      </li>
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <li class="social-item">
+        <a href="//www.linkedin.com/in/linkedin_username" title="Linkedin"><span class="icon icon-linkedin"></span></a>
+      </li>
+
+      
+
+      
+
+      
+
+      <li class="social-item">
+        <a href="/index.xml"><span class="icon icon-rss" title="RSS"></span></a>
+      </li>
+
+    </ul>
+  </nav>
+</header>
+
+  <section class="main post-detail">
+    <header class="post-header">
+      <h1 class="post-title">Optimiser ses requêtes DynamoDB</h1>
+      <p class="post-meta">@Vincent Dubois · Feb 6, 2018 · 5 min. de lecture</p>
+    </header>
+    <article class="post-content">
+
+<p>Récemment j&rsquo;ai rencontré dans le cadre de mon projet quelques petits soucis de performances lors de l&rsquo;utilisation de DynamoDB.</p>
+
+<p>Le tout premier problème rencontré est un problème assez évident : nous avions mis systématiquement sur tous nos différents environnements AWS des capacités en lecture et en écriture sur nos tables DynamoDB à 1. Cela veut dire que DynamoDB pouvait traiter une lecture ou une écriture en parallèle. L&rsquo;application a bien fonctionné jusqu&rsquo;au moment où nous avons eu quelques données et un peu de traffic car nos testeurs et ceux du client utilisaient l&rsquo;application.</p>
+
+<p>Il faut savoir que si vous dépassez un temps raisonnable dans vos lambdas (par défaut, 6 secondes), elles tombent en timeout avec une erreur 502 et un message peu évocateur : &lsquo;internal server error&rsquo;. C&rsquo;est ce qui s&rsquo;est passé pour nous, car plusieurs appels à DynamoDB partaient en parallèle dans la même lambda. Certains étaient résolus en quelques millisecondes, d&rsquo;autres en quelques centaines, voir jusqu&rsquo;à 4 secondes (!).</p>
+
+<p>Nous avons dès lors surveillé les demandes moyennes sur nos tables en lecture et en écriture et avons adapté le nombre au traffic moyen. Nous avons néanmoins observé de temps en temps des temps de réponse très longs, voire des erreurs de timeout de nos lambdas. Nous n&rsquo;avions donc pas réglé tous nos problèmes.</p>
+
+<p>Peu de temps avant la première mise en production de l&rsquo;application, nous avons passé toutes nos tables DynamoDB en autoscaling. Cela nous a permis de régler définitivement toutes nos problèmes de performances et donc nos erreurs de timeout.</p>
+
+<p>Puis, durant la dernière phase de recette de l&rsquo;application, plusieurs bugs liés à des données absentes nous ont causé quelques soucis.</p>
+
+<p>Nous avons dans l&rsquo;application largement utilisé la fonction &ldquo;scan&rdquo; de DynamoDB.DocumentClient. Par exemple :</p>
+
+<pre><code class="language-javascript">findOneByNom(nom: string): Promise&lt;Film&gt; {
+  const params = {
+    ScanFilter: {
+      'name': {
+        ComparisonOperator: 'EQ',
+        AttributeValueList: [nom]
+      }
+    },
+    TableName: process.env.FILMS_DYNAMODB_TABLE as string
+  };
+  return this.dynamodbClient.scan(params)
+    .promise().then(result =&gt; result.Items[0] as Film);
+}
+</code></pre>
+
+<p>En débuggant le code, nous nous sommes aperçus que certaines requêtes à l&rsquo;API scan ne ramenaient pas les données qu&rsquo;elles étaient censées ramener. En fait, l&rsquo;API scan fait un full scan des tables à la recherche des informations, mais ramène les résultats par portion de 1 MB. Il nous a donc fallu implémenter une version paginée de l&rsquo;API scan.</p>
+
+<h2 id="implémenter-la-fonction-scan-paginée">Implémenter la fonction scan paginée</h2>
+
+<p>Pour cela, il suffit de baser l&rsquo;algorithme sur le fonctionnement de l&rsquo;API DynamoDB : celle-ci renvoie (ou non) une propriété &ldquo;LastEvaluatedKey&rdquo; qu&rsquo;il est nécessaire de repasser en entrée de l&rsquo;appel suivant dans l&rsquo;attribut &ldquo;ExclusiveStartKey&rdquo;.</p>
+
+<pre><code class="language-javascript">scan(scanParams: ScanInput): Promise&lt;any&gt; {
+  const items: Array&lt;any&gt; = [];
+  return this.dbClient.scan(scanParams).promise()
+    .then(result =&gt; {
+      items.push(result.Items);
+      if (result.LastEvaluatedKey) {
+        scanParams.ExclusiveStartKey = result.LastEvaluatedKey;
+        return this.scan(scanParams);
+      } else {
+        return Promise.resolve(this.flattenArray(items));
+      }
+    });
+}
+
+private flattenArray(arrayOfArray) {
+  return [].concat.apply([], arrayOfArray);
+}
+</code></pre>
+
+<p>Cela fonctionne dorénavant correctement. Si on effectue des requêtes avec des filtres, cela ramène nos données, où qu&rsquo;elles soient dans la table.</p>
+
+<p>Mais ce n&rsquo;est pas très optimisé. Et cela consomme donc pas mal en capacité de lecture et écriture.</p>
+
+<h2 id="optimiser-les-requêtes-avec-des-index-secondaires-globaux">Optimiser les requêtes avec des index secondaires globaux</h2>
+
+<p>Dans notre application, nous avons fait le choix de stocker des données liées dans deux tables DynamoDB différentes. Pour anonymiser les données, imaginons que l&rsquo;on travaille sur un site de location de vidéos. Voici un diagramme simplifié de notre cas :</p>
+
+<p><img src="http://dubois.vct.free.fr/realisateur-films.png" alt="realisateurs-films" /></p>
+
+<p>Imaginons maintenant que nous voulons systématiquement récupérer les films par réalisateur. On peut le faire avec un scan, mais cela va parcourir toute la table.</p>
+
+<p>La meilleure option dans DynamoDB est de créer un index secondaire sur la ou les propriétés qui nous intéressent. Dans notre exemple, il s&rsquo;agit de créer un index secondaire sur la propriété realisateurId de la table films.
+Pour commencer, il est nécessaire de créer l&rsquo;index. Nous utilisons sur notre projet le format Cloudformation qui nous permet de décrire des ressources AWS dans nos fichiers Serverless :</p>
+
+<pre><code class="language-yaml">TableFilms:
+  Type: 'AWS::DynamoDB::Table'
+  Properties:
+    TableName: ${opt:stage, self:provider.stage}-films
+    AttributeDefinitions:
+      - AttributeName: id
+        AttributeType: S
+      - AttributeName: realisateurId
+        AttributeType: S
+    GlobalSecondaryIndexes:
+      - IndexName: ${opt:stage, self:provider.stage}-films-index-realisateurId
+        KeySchema:
+          - AttributeName: realisateurId
+            KeyType: HASH
+        Projection:
+          ProjectionType: ALL
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+    KeySchema:
+      - AttributeName: id
+        KeyType: HASH
+    ProvisionedThroughput:
+      ReadCapacityUnits: 1
+      WriteCapacityUnits: 1
+</code></pre>
+
+<p>La propriété ProjectionType est valorisée à ALL, ce qui veut dire que l&rsquo;on indexe la totalité des attributs des objets. C&rsquo;était nécessaire dans notre cas, car nous n&rsquo;avons récupéré les films que via les réalisateurs.</p>
+
+<p>Il est nécessaire de donner les droits à notre code sur l&rsquo;index de la table. Cela se fait comme toujours dans le fichier de Serverless (celui du projet qui va effectuer la requête sollicitant l&rsquo;index) :</p>
+
+<pre><code class="language-yaml">iamRoleStatements:
+- Effect: Allow
+  Action:
+    - dynamodb:Query
+  Resource:
+    - Fn::Join:
+      - &quot;&quot;
+      - - &quot;arn:aws:dynamodb:&quot;
+        - Ref: AWS::Region
+        - &quot;:&quot;
+        - Ref: AWS::AccountId
+        - &quot;:table/${self:provider.environment.FILMS_DYNAMODB_TABLE}&quot;
+    - Fn::Join:
+      - &quot;&quot;
+      - - &quot;arn:aws:dynamodb:&quot;
+        - Ref: AWS::Region
+        - &quot;:&quot;
+        - Ref: AWS::AccountId
+        - &quot;:table/${self:provider.environment.FILMS_DYNAMODB_TABLE}/index/${self:provider.environment.FILMS_INDEX_REALISATEUR_ID_DYNAMODB_TABLE}&quot;
+</code></pre>
+
+<h2 id="appeler-l-api-query-pour-utiliser-les-index-globaux-secondaires">Appeler l&rsquo;API query pour utiliser les index globaux secondaires</h2>
+
+<p>Tout est prêt, il ne reste plus qu&rsquo;à appeler l&rsquo;API query de DynamoDB pour utiliser notre index.</p>
+
+<p>Attention, de base cette API est faite pour requêter sur les clés primaires. Pour requêter sur un index, il suffit d&rsquo;ajouter la propriété &lsquo;IndexName&rsquo; dans la requête :</p>
+
+<pre><code class="language-javascript">findByRealisateurId(realisateurId: string): Promise&lt;Array&lt;Film&gt;&gt; {
+
+  const parameters = {
+    TableName: process.env.FILMS_DYNAMODB_TABLE,
+    IndexName: process.env.FILMS_INDEX_REALISATEUR_ID_DYNAMODB_TABLE,
+    KeyConditionExpression: '#realisateurId = :realisateurId',
+    ExpressionAttributeNames: {
+      '#realisateurId': 'realisateurId'
+    },
+    ExpressionAttributeValues: {
+      ':realisateurId': realisateurId
+    }
+  };
+
+  return this.dbClient
+    .query(parameters)
+    .promise()
+    .then(data =&gt; data.Items as Array&lt;Film&gt;);
+</code></pre>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>Travailler sur des projets Serverless est très intéressant car AWS s&rsquo;occupe de gérer l&rsquo;infrastructure pour nous. Il adapte par exemple le nombre de conteneurs faisant tourner nos lambdas au traffic entrant de l&rsquo;application. Cela peut sembler tentant de faire confiance à AWS et de prendre des choix par défaut. DynamoDB est un produit serverless au même titre. On peut activer l&rsquo;autoscaling et l&rsquo;application scale comme par magie. Mais cela ne doit pas nous empêcher de faire attention à l&rsquo;optimisation de notre code.</p>
+
+<p>L&rsquo;API scan de DynamoDB ne devrait être utilisée que pour des cas bien précis auquels query ne peut pas répondre : quand on recherche un ensemble de prédicats, ou quand on veut retourner l&rsquo;ensemble des éléments d&rsquo;une table par exemple.</p>
+
+<p>Ce qui nous a sauvé la mise sur notre projet est la mise en place de X-Ray sur nos lambdas. Nous avons vu très vite nos problèmes de performance matérialisés. Je conseille vivement l&rsquo;utilisation de ce produit dont la mise en place dans les projets Serverless se fait via le plugin <a href="https://github.com/alex-murashkin/serverless-plugin-tracing">serverless-plugin-tracing</a>.</p>
+</article>
+    <footer class="post-footer">
+      
+      <ul class="post-tags">
+        
+          <li><a href="/tags/serverless"><span class="tag">Serverless</span></a></li>
+        
+          <li><a href="/tags/aws"><span class="tag">AWS</span></a></li>
+        
+          <li><a href="/tags/dynamodb"><span class="tag">DynamoDB</span></a></li>
+        
+          <li><a href="/tags/lambda"><span class="tag">Lambda</span></a></li>
+        
+      </ul>
+      
+      <p class="post-copyright">
+        
+      </p>
+    </footer>
+    
+      
+    
+  </section>
+  <footer class="site-footer">
+  <p>© 2017-2018 Yet another dev blog</p>
+  <p>Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank">Nuo</a>.</p>
+  
+</footer>
+
+
+
+<script async src="//cdn.bootcss.com/video.js/6.2.8/alt/video.novtt.min.js"></script>
+<script async src="//cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\[','\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    }
+  });
+</script>
+<script type="text/x-mathjax-config">
+  // Fix <code> tags after MathJax finishes running. This is a
+  // hack to overcome a shortcoming of Markdown. Discussion at
+  // https://github.com/mojombo/jekyll/issues/199
+  MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+  });
+</script>
+
+<script src="/js/bundle.js"></script>
+
+
+
+
+  </body>
+</html>

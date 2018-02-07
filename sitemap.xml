@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://vdubois.github.io/2018/02/optimiser-ses-requ%C3%AAtes-dynamodb/</loc>
+    <lastmod>2018-02-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://vdubois.github.io/2017/12/mon-premier-module-node--aws-sdk-fluent-builder/</loc>
+    <lastmod>2017-12-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://vdubois.github.io/2017/12/formation-angular-de-z%C3%A9ro-%C3%A0-ninja-par-ninja-squad/</loc>
+    <lastmod>2017-12-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://vdubois.github.io/tags/angular/</loc>
+    <lastmod>2017-12-16T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://vdubois.github.io/tags/aws/</loc>
+    <lastmod>2018-02-06T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://vdubois.github.io/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://vdubois.github.io/tags/dynamodb/</loc>
+    <lastmod>2018-02-06T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://vdubois.github.io/tags/javascript/</loc>
+    <lastmod>2017-12-21T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://vdubois.github.io/tags/lambda/</loc>
+    <lastmod>2018-02-06T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://vdubois.github.io/post/</loc>
+    <lastmod>2018-02-06T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://vdubois.github.io/tags/serverless/</loc>
+    <lastmod>2018-02-06T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://vdubois.github.io/tags/</loc>
+    <lastmod>2017-12-16T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://vdubois.github.io/tags/typescript/</loc>
+    <lastmod>2017-12-21T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://vdubois.github.io/</loc>
+    <lastmod>2018-02-06T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+</urlset>

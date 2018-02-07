@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Dynamodb on Yet another dev blog</title>
+    <link>https://vdubois.github.io/tags/dynamodb/</link>
+    <description>Recent content in Dynamodb on Yet another dev blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>fr-fr</language>
+    <lastBuildDate>Tue, 06 Feb 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://vdubois.github.io/tags/dynamodb/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Optimiser ses requêtes DynamoDB</title>
+      <link>https://vdubois.github.io/2018/02/optimiser-ses-requ%C3%AAtes-dynamodb/</link>
+      <pubDate>Tue, 06 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://vdubois.github.io/2018/02/optimiser-ses-requ%C3%AAtes-dynamodb/</guid>
+      <description>Récemment j&amp;rsquo;ai rencontré dans le cadre de mon projet quelques petits soucis de performances lors de l&amp;rsquo;utilisation de DynamoDB.
+Le tout premier problème rencontré est un problème assez évident : nous avions mis systématiquement sur tous nos différents environnements AWS des capacités en lecture et en écriture sur nos tables DynamoDB à 1. Cela veut dire que DynamoDB pouvait traiter une lecture ou une écriture en parallèle. L&amp;rsquo;application a bien fonctionné jusqu&amp;rsquo;au moment où nous avons eu quelques données et un peu de traffic car nos testeurs et ceux du client utilisaient l&amp;rsquo;application.</description>
+    </item>
+    
+  </channel>
+</rss>

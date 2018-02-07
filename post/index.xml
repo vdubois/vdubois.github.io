@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Yet another dev blog</title>
+    <link>https://vdubois.github.io/post/</link>
+    <description>Recent content in Posts on Yet another dev blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>fr-fr</language>
+    <lastBuildDate>Tue, 06 Feb 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://vdubois.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Optimiser ses requêtes DynamoDB</title>
+      <link>https://vdubois.github.io/2018/02/optimiser-ses-requ%C3%AAtes-dynamodb/</link>
+      <pubDate>Tue, 06 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://vdubois.github.io/2018/02/optimiser-ses-requ%C3%AAtes-dynamodb/</guid>
+      <description>Récemment j&amp;rsquo;ai rencontré dans le cadre de mon projet quelques petits soucis de performances lors de l&amp;rsquo;utilisation de DynamoDB.
+Le tout premier problème rencontré est un problème assez évident : nous avions mis systématiquement sur tous nos différents environnements AWS des capacités en lecture et en écriture sur nos tables DynamoDB à 1. Cela veut dire que DynamoDB pouvait traiter une lecture ou une écriture en parallèle. L&amp;rsquo;application a bien fonctionné jusqu&amp;rsquo;au moment où nous avons eu quelques données et un peu de traffic car nos testeurs et ceux du client utilisaient l&amp;rsquo;application.</description>
+    </item>
+    
+    <item>
+      <title>Mon premier module node : aws-sdk-fluent-builder</title>
+      <link>https://vdubois.github.io/2017/12/mon-premier-module-node--aws-sdk-fluent-builder/</link>
+      <pubDate>Thu, 21 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://vdubois.github.io/2017/12/mon-premier-module-node--aws-sdk-fluent-builder/</guid>
+      <description>Pourquoi encore un autre module node ? Depuis quelques mois je travaille sur un projet serverless pour un client. Nos développements sont réalisés principalement en Typescript (car nous avons une partie front Angular).
+Pour le back, nous utilisons le framework serverless afin de déployer nos lambdas et c&amp;rsquo;est un super framework. Dans les cuisines, serverless utilise AWS CloudFormation pour construire la stack applicative. On peut définir tout ce qu&amp;rsquo;on veut : lambdas, endpoints HTTP avec API Gateway, mais aussi tout ce qui est ressources compatibles Cloudformation.</description>
+    </item>
+    
+    <item>
+      <title>Formation Angular De Zéro à Ninja Par Ninja Squad</title>
+      <link>https://vdubois.github.io/2017/12/formation-angular-de-z%C3%A9ro-%C3%A0-ninja-par-ninja-squad/</link>
+      <pubDate>Sat, 16 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://vdubois.github.io/2017/12/formation-angular-de-z%C3%A9ro-%C3%A0-ninja-par-ninja-squad/</guid>
+      <description>Fin octobre, j&amp;rsquo;ai suivi la formation &amp;ldquo;Angular : de Zéro à Ninja animée par Jean Baptiste Nizet dans les locaux de ma société.
+Je tenais à faire un petit retour car cette formation est d&amp;rsquo;une qualité très élevée. Non seulement on apprend tout ce qui est nécessaire à être opérationnel sur du développement d&amp;rsquo;applications Angular, mais en plus, Ninja Squad nous donne accès à sa plateforme d&amp;rsquo;exercices de formation en ligne ainsi qu&amp;rsquo;à son ebook Angular.</description>
+    </item>
+    
+  </channel>
+</rss>
