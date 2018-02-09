@@ -239,47 +239,41 @@ Le tout premier problème rencontré est un problème assez évident : nous avio
 <p>Puis, durant la dernière phase de recette de l&rsquo;application, plusieurs bugs liés à des données absentes nous ont causé quelques soucis.</p>
 
 <p>Nous avons dans l&rsquo;application largement utilisé la fonction &ldquo;scan&rdquo; de DynamoDB.DocumentClient. Par exemple :</p>
-
-<pre><code class="language-javascript">findOneByNom(nom: string): Promise&lt;Film&gt; {
-  const params = {
-    ScanFilter: {
-      'name': {
-        ComparisonOperator: 'EQ',
-        AttributeValueList: [nom]
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#a6e22e">findOneByNom</span>(<span style="color:#a6e22e">nom</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">string</span>)<span style="color:#f92672">:</span> Promise<span style="color:#f92672">&lt;</span><span style="color:#a6e22e">Film</span><span style="color:#f92672">&gt;</span> {
+  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">params</span> <span style="color:#f92672">=</span> {
+    <span style="color:#a6e22e">ScanFilter</span><span style="color:#f92672">:</span> {
+      <span style="color:#e6db74">&#39;name&#39;</span><span style="color:#f92672">:</span> {
+        <span style="color:#a6e22e">ComparisonOperator</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;EQ&#39;</span>,
+        <span style="color:#a6e22e">AttributeValueList</span><span style="color:#f92672">:</span> [<span style="color:#a6e22e">nom</span>]
       }
     },
-    TableName: process.env.FILMS_DYNAMODB_TABLE as string
+    <span style="color:#a6e22e">TableName</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">env</span>.<span style="color:#a6e22e">FILMS_DYNAMODB_TABLE</span> <span style="color:#a6e22e">as</span> <span style="color:#a6e22e">string</span>
   };
-  return this.dynamodbClient.scan(params)
-    .promise().then(result =&gt; result.Items[0] as Film);
-}
-</code></pre>
-
+  <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">dynamodbClient</span>.<span style="color:#a6e22e">scan</span>(<span style="color:#a6e22e">params</span>)
+    .<span style="color:#a6e22e">promise</span>().<span style="color:#a6e22e">then</span>(<span style="color:#a6e22e">result</span> =&gt; <span style="color:#a6e22e">result</span>.<span style="color:#a6e22e">Items</span>[<span style="color:#ae81ff">0</span>] <span style="color:#a6e22e">as</span> <span style="color:#a6e22e">Film</span>);
+}</code></pre></div>
 <p>En débuggant le code, nous nous sommes aperçus que certaines requêtes à l&rsquo;API scan ne ramenaient pas les données qu&rsquo;elles étaient censées ramener. En fait, l&rsquo;API scan fait un full scan des tables à la recherche des informations, mais ramène les résultats par portion de 1 MB. Il nous a donc fallu implémenter une version paginée de l&rsquo;API scan.</p>
 
 <h2 id="implémenter-la-fonction-scan-paginée">Implémenter la fonction scan paginée</h2>
 
 <p>Pour cela, il suffit de baser l&rsquo;algorithme sur le fonctionnement de l&rsquo;API DynamoDB : celle-ci renvoie (ou non) une propriété &ldquo;LastEvaluatedKey&rdquo; qu&rsquo;il est nécessaire de repasser en entrée de l&rsquo;appel suivant dans l&rsquo;attribut &ldquo;ExclusiveStartKey&rdquo;.</p>
-
-<pre><code class="language-javascript">scan(scanParams: ScanInput): Promise&lt;any&gt; {
-  const items: Array&lt;any&gt; = [];
-  return this.dbClient.scan(scanParams).promise()
-    .then(result =&gt; {
-      items.push(result.Items);
-      if (result.LastEvaluatedKey) {
-        scanParams.ExclusiveStartKey = result.LastEvaluatedKey;
-        return this.scan(scanParams);
-      } else {
-        return Promise.resolve(this.flattenArray(items));
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#a6e22e">scan</span>(<span style="color:#a6e22e">scanParams</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">ScanInput</span>)<span style="color:#f92672">:</span> Promise<span style="color:#f92672">&lt;</span><span style="color:#a6e22e">any</span><span style="color:#f92672">&gt;</span> {
+  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">items</span><span style="color:#f92672">:</span> Array<span style="color:#f92672">&lt;</span><span style="color:#a6e22e">any</span><span style="color:#f92672">&gt;</span> <span style="color:#f92672">=</span> [];
+  <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">dbClient</span>.<span style="color:#a6e22e">scan</span>(<span style="color:#a6e22e">scanParams</span>).<span style="color:#a6e22e">promise</span>()
+    .<span style="color:#a6e22e">then</span>(<span style="color:#a6e22e">result</span> =&gt; {
+      <span style="color:#a6e22e">items</span>.<span style="color:#a6e22e">push</span>(<span style="color:#a6e22e">result</span>.<span style="color:#a6e22e">Items</span>);
+      <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">result</span>.<span style="color:#a6e22e">LastEvaluatedKey</span>) {
+        <span style="color:#a6e22e">scanParams</span>.<span style="color:#a6e22e">ExclusiveStartKey</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">result</span>.<span style="color:#a6e22e">LastEvaluatedKey</span>;
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">scan</span>(<span style="color:#a6e22e">scanParams</span>);
+      } <span style="color:#66d9ef">else</span> {
+        <span style="color:#66d9ef">return</span> Promise.<span style="color:#a6e22e">resolve</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">flattenArray</span>(<span style="color:#a6e22e">items</span>));
       }
     });
 }
 
-private flattenArray(arrayOfArray) {
-  return [].concat.apply([], arrayOfArray);
-}
-</code></pre>
-
+<span style="color:#66d9ef">private</span> <span style="color:#a6e22e">flattenArray</span>(<span style="color:#a6e22e">arrayOfArray</span>) {
+  <span style="color:#66d9ef">return</span> [].<span style="color:#a6e22e">concat</span>.<span style="color:#a6e22e">apply</span>([], <span style="color:#a6e22e">arrayOfArray</span>);
+}</code></pre></div>
 <p>Cela fonctionne dorénavant correctement. Si on effectue des requêtes avec des filtres, cela ramène nos données, où qu&rsquo;elles soient dans la table.</p>
 
 <p>Mais ce n&rsquo;est pas très optimisé. Et cela consomme donc pas mal en capacité de lecture et écriture.</p>
@@ -294,9 +288,8 @@ private flattenArray(arrayOfArray) {
 
 <p>La meilleure option dans DynamoDB est de créer un index secondaire sur la ou les propriétés qui nous intéressent. Dans notre exemple, il s&rsquo;agit de créer un index secondaire sur la propriété realisateurId de la table films.
 Pour commencer, il est nécessaire de créer l&rsquo;index. Nous utilisons sur notre projet le format Cloudformation qui nous permet de décrire des ressources AWS dans nos fichiers Serverless :</p>
-
-<pre><code class="language-yaml">TableFilms:
-  Type: 'AWS::DynamoDB::Table'
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">TableFilms:
+  Type: <span style="color:#e6db74">&#39;AWS::DynamoDB::Table&#39;</span>
   Properties:
     TableName: ${opt:stage, self:provider.stage}-films
     AttributeDefinitions:
@@ -312,67 +305,59 @@ Pour commencer, il est nécessaire de créer l&rsquo;index. Nous utilisons sur n
         Projection:
           ProjectionType: ALL
         ProvisionedThroughput:
-          ReadCapacityUnits: 1
-          WriteCapacityUnits: 1
+          ReadCapacityUnits: <span style="color:#ae81ff">1</span>
+          WriteCapacityUnits: <span style="color:#ae81ff">1</span>
     KeySchema:
       - AttributeName: id
         KeyType: HASH
     ProvisionedThroughput:
-      ReadCapacityUnits: 1
-      WriteCapacityUnits: 1
-</code></pre>
-
+      ReadCapacityUnits: <span style="color:#ae81ff">1</span>
+      WriteCapacityUnits: <span style="color:#ae81ff">1</span></code></pre></div>
 <p>La propriété ProjectionType est valorisée à ALL, ce qui veut dire que l&rsquo;on indexe la totalité des attributs des objets. C&rsquo;était nécessaire dans notre cas, car nous n&rsquo;avons récupéré les films que via les réalisateurs.</p>
 
 <p>Il est nécessaire de donner les droits à notre code sur l&rsquo;index de la table. Cela se fait comme toujours dans le fichier de Serverless (celui du projet qui va effectuer la requête sollicitant l&rsquo;index) :</p>
-
-<pre><code class="language-yaml">iamRoleStatements:
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">iamRoleStatements:
 - Effect: Allow
   Action:
     - dynamodb:Query
   Resource:
     - Fn::Join:
-      - &quot;&quot;
-      - - &quot;arn:aws:dynamodb:&quot;
+      - <span style="color:#e6db74">&#34;&#34;</span>
+      - - <span style="color:#e6db74">&#34;arn:aws:dynamodb:&#34;</span>
         - Ref: AWS::Region
-        - &quot;:&quot;
+        - <span style="color:#e6db74">&#34;:&#34;</span>
         - Ref: AWS::AccountId
-        - &quot;:table/${self:provider.environment.FILMS_DYNAMODB_TABLE}&quot;
+        - <span style="color:#e6db74">&#34;:table/${self:provider.environment.FILMS_DYNAMODB_TABLE}&#34;</span>
     - Fn::Join:
-      - &quot;&quot;
-      - - &quot;arn:aws:dynamodb:&quot;
+      - <span style="color:#e6db74">&#34;&#34;</span>
+      - - <span style="color:#e6db74">&#34;arn:aws:dynamodb:&#34;</span>
         - Ref: AWS::Region
-        - &quot;:&quot;
+        - <span style="color:#e6db74">&#34;:&#34;</span>
         - Ref: AWS::AccountId
-        - &quot;:table/${self:provider.environment.FILMS_DYNAMODB_TABLE}/index/${self:provider.environment.FILMS_INDEX_REALISATEUR_ID_DYNAMODB_TABLE}&quot;
-</code></pre>
-
+        - <span style="color:#e6db74">&#34;:table/${self:provider.environment.FILMS_DYNAMODB_TABLE}/index/${self:provider.environment.FILMS_INDEX_REALISATEUR_ID_DYNAMODB_TABLE}&#34;</span></code></pre></div>
 <h2 id="appeler-l-api-query-pour-utiliser-les-index-globaux-secondaires">Appeler l&rsquo;API query pour utiliser les index globaux secondaires</h2>
 
 <p>Tout est prêt, il ne reste plus qu&rsquo;à appeler l&rsquo;API query de DynamoDB pour utiliser notre index.</p>
 
 <p>Attention, de base cette API est faite pour requêter sur les clés primaires. Pour requêter sur un index, il suffit d&rsquo;ajouter la propriété &lsquo;IndexName&rsquo; dans la requête :</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#a6e22e">findByRealisateurId</span>(<span style="color:#a6e22e">realisateurId</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">string</span>)<span style="color:#f92672">:</span> Promise<span style="color:#f92672">&lt;</span>Array<span style="color:#f92672">&lt;</span><span style="color:#a6e22e">Film</span><span style="color:#f92672">&gt;&gt;</span> {
 
-<pre><code class="language-javascript">findByRealisateurId(realisateurId: string): Promise&lt;Array&lt;Film&gt;&gt; {
-
-  const parameters = {
-    TableName: process.env.FILMS_DYNAMODB_TABLE,
-    IndexName: process.env.FILMS_INDEX_REALISATEUR_ID_DYNAMODB_TABLE,
-    KeyConditionExpression: '#realisateurId = :realisateurId',
-    ExpressionAttributeNames: {
-      '#realisateurId': 'realisateurId'
+  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">parameters</span> <span style="color:#f92672">=</span> {
+    <span style="color:#a6e22e">TableName</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">env</span>.<span style="color:#a6e22e">FILMS_DYNAMODB_TABLE</span>,
+    <span style="color:#a6e22e">IndexName</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">env</span>.<span style="color:#a6e22e">FILMS_INDEX_REALISATEUR_ID_DYNAMODB_TABLE</span>,
+    <span style="color:#a6e22e">KeyConditionExpression</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;#realisateurId = :realisateurId&#39;</span>,
+    <span style="color:#a6e22e">ExpressionAttributeNames</span><span style="color:#f92672">:</span> {
+      <span style="color:#e6db74">&#39;#realisateurId&#39;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;realisateurId&#39;</span>
     },
-    ExpressionAttributeValues: {
-      ':realisateurId': realisateurId
+    <span style="color:#a6e22e">ExpressionAttributeValues</span><span style="color:#f92672">:</span> {
+      <span style="color:#e6db74">&#39;:realisateurId&#39;</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">realisateurId</span>
     }
   };
 
-  return this.dbClient
-    .query(parameters)
-    .promise()
-    .then(data =&gt; data.Items as Array&lt;Film&gt;);
-</code></pre>
-
+  <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">dbClient</span>
+    .<span style="color:#a6e22e">query</span>(<span style="color:#a6e22e">parameters</span>)
+    .<span style="color:#a6e22e">promise</span>()
+    .<span style="color:#a6e22e">then</span>(<span style="color:#a6e22e">data</span> =&gt; <span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">Items</span> <span style="color:#a6e22e">as</span> Array<span style="color:#f92672">&lt;</span><span style="color:#a6e22e">Film</span><span style="color:#f92672">&gt;</span>);</code></pre></div>
 <h2 id="conclusion">Conclusion</h2>
 
 <p>Travailler sur des projets Serverless est très intéressant car AWS s&rsquo;occupe de gérer l&rsquo;infrastructure pour nous. Il adapte par exemple le nombre de conteneurs faisant tourner nos lambdas au traffic entrant de l&rsquo;application. Cela peut sembler tentant de faire confiance à AWS et de prendre des choix par défaut. DynamoDB est un produit serverless au même titre. On peut activer l&rsquo;autoscaling et l&rsquo;application scale comme par magie. Mais cela ne doit pas nous empêcher de faire attention à l&rsquo;optimisation de notre code.</p>
