@@ -6,10 +6,20 @@
     <description>Recent content in Aws on Yet another dev blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>fr-fr</language>
-    <lastBuildDate>Tue, 06 Feb 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 12 Feb 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://vdubois.github.io/tags/aws/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Pas à pas pour héberger son site personnel sur AWS</title>
+      <link>https://vdubois.github.io/2018/02/pas-%C3%A0-pas-pour-h%C3%A9berger-son-site-personnel-sur-aws/</link>
+      <pubDate>Mon, 12 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://vdubois.github.io/2018/02/pas-%C3%A0-pas-pour-h%C3%A9berger-son-site-personnel-sur-aws/</guid>
+      <description>Dans cet article, j&amp;rsquo;aimerais partager la méthode que j&amp;rsquo;ai employé pour mettre en ligne mon site personnel sur AWS. En effet, j&amp;rsquo;ai eu du mal à trouver des articles complets sur la toile afin de paramétrer tout ça. Finalement, avec un peu de patience et de persévérance, je suis arrivé à mes fins.
+Nom de domaine La première étape a été l&amp;rsquo;achat du nom de domaine. J&amp;rsquo;ai choisi OVH car c&amp;rsquo;est un des registrars les moins chers, et aussi car il m&amp;rsquo;a été conseillé par un collègue freelance qui a l&amp;rsquo;habitude d&amp;rsquo;utiliser OVH pour ses clients.</description>
+    </item>
     
     <item>
       <title>Optimiser ses requêtes DynamoDB</title>
