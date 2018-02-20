@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="fr-fr">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>Critique du livre Serverless architectures on AWS with examples using AWS Lambda</title>
+
+  
+  
+
+
+
+
+
+  
+  <meta name="author" content="Vincent Dubois" />
+  <meta name="description" content="Voici une critique sans prétention de ce premier livre que j&amp;rsquo;entreprends sur Serverless alors que voilà quelques mois que j&amp;rsquo;utilise pleinement cette technologie de façon industrialisée sur un projet pour un client.
+Le plan du livre a l&amp;rsquo;air vraiment pas mal au premier abord. Tout tourne autour de la création d&amp;rsquo;un site web style Youtube de partage de vidéos. On monte notamment un pipeline de transcodage des vidéos postées par les utilisateurs en différents format à l&amp;rsquo;aide de lambdas, et de S3 pour la partie stockage." />
+
+  
+  
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@vdubois" />
+    <meta name="twitter:title" content="Critique du livre Serverless architectures on AWS with examples using AWS Lambda" />
+    <meta name="twitter:description" content="Voici une critique sans prétention de ce premier livre que j&amp;rsquo;entreprends sur Serverless alors que voilà quelques mois que j&amp;rsquo;utilise pleinement cette technologie de façon industrialisée sur un projet pour un client.
+Le plan du livre a l&amp;rsquo;air vraiment pas mal au premier abord. Tout tourne autour de la création d&amp;rsquo;un site web style Youtube de partage de vidéos. On monte notamment un pipeline de transcodage des vidéos postées par les utilisateurs en différents format à l&amp;rsquo;aide de lambdas, et de S3 pour la partie stockage." />
+    <meta name="twitter:image" content="https://vdubois.github.io/img/avatar.jpg" />
+  
+
+  
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Critique du livre Serverless architectures on AWS with examples using AWS Lambda" />
+  <meta property="og:description" content="Voici une critique sans prétention de ce premier livre que j&amp;rsquo;entreprends sur Serverless alors que voilà quelques mois que j&amp;rsquo;utilise pleinement cette technologie de façon industrialisée sur un projet pour un client.
+Le plan du livre a l&amp;rsquo;air vraiment pas mal au premier abord. Tout tourne autour de la création d&amp;rsquo;un site web style Youtube de partage de vidéos. On monte notamment un pipeline de transcodage des vidéos postées par les utilisateurs en différents format à l&amp;rsquo;aide de lambdas, et de S3 pour la partie stockage." />
+  <meta property="og:url" content="https://vdubois.github.io/2018/02/critique-du-livre-serverless-architectures-on-aws-with-examples-using-aws-lambda/" />
+  <meta property="og:image" content="https://vdubois.github.io/img/avatar.jpg" />
+
+
+
+
+<meta name="generator" content="Hugo 0.36" />
+
+
+<link rel="canonical" href="https://vdubois.github.io/2018/02/critique-du-livre-serverless-architectures-on-aws-with-examples-using-aws-lambda/" />
+<link rel="alternative" href="/index.xml" title="Yet another dev blog" type="application/atom+xml" />
+
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="format-detection" content="telephone=no,email=no,adress=no" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+
+
+<meta name="robots" content="index,follow" />
+<meta name="referrer" content="origin-when-cross-origin" />
+
+
+
+
+
+
+
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="Yet another dev blog" />
+<meta name="msapplication-tooltip" content="Yet another dev blog" />
+<meta name='msapplication-navbutton-color' content="#5fbf5e" />
+<meta name="msapplication-TileColor" content="#5fbf5e" />
+<meta name="msapplication-TileImage" content="/img/tile-image-windows.png" />
+<link rel="icon" href="/img/favicon.ico" />
+<link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png" />
+<link rel="icon" sizes="192x192" href="/img/touch-icon-android.png" />
+<link rel="apple-touch-icon" href="/img/touch-icon-apple.png" />
+<link rel="mask-icon" href="/img/safari-pinned-tab.svg" color="#5fbf5e" />
+
+
+
+<link rel="stylesheet" href="//cdn.bootcss.com/video.js/6.2.8/alt/video-js-cdn.min.css" />
+
+<link rel="stylesheet" href="/css/bundle.css" />
+
+
+  
+  <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <script src="//cdn.bootcss.com/video.js/6.2.8/ie8/videojs-ie8.min.js"></script>
+  <![endif]-->
+
+<!--[if lte IE 11]>
+    <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
+  <![endif]-->
+
+
+<script src="//cdn.bootcss.com/object-fit-images/3.2.3/ofi.min.js"></script>
+
+
+<script src="//cdn.bootcss.com/smooth-scroll/12.1.4/js/smooth-scroll.polyfills.min.js"></script>
+
+
+</head>
+  <body>
+    
+    <div class="suspension">
+      <a title="Go to top" class="to-top is-hide"><span class="icon icon-up"></span></a>
+      
+        
+        <a title="Go to comments" class="to-comment" href="#disqus_thread"><span class="icon icon-comment"></span></a>
+        
+      
+    </div>
+    
+    
+  <header class="site-header">
+  <img class="avatar" src="/img/avatar.png" alt="Avatar">
+  
+  <h2 class="title">Yet another dev blog</h2>
+  
+  <p class="subtitle"></p>
+  <button class="menu-toggle" type="button">
+    <span class="icon icon-menu"></span>
+  </button>
+  <nav class="site-menu collapsed">
+    <h2 class="offscreen">Menu principal</h2>
+    <ul class="menu-list">
+      
+      
+      
+      
+        <li class="menu-item
+            
+            
+            
+              is-active
+            ">
+            <a href="/">Articles</a>
+          </li>
+      
+        <li class="menu-item
+            
+            
+            ">
+            <a href="https://github.com/vdubois">Github</a>
+          </li>
+      
+        <li class="menu-item
+            
+            
+            ">
+            <a href="/tags/">Tags</a>
+          </li>
+      
+    </ul>
+  </nav>
+  <nav class="social-menu collapsed">
+    <h2 class="offscreen">R&eacute;seaux sociaux</h2>
+    <ul class="social-list">
+
+      
+      <li class="social-item">
+        <a href="mailto:dubois.vct@free.fr" title="Email"><span class="icon icon-email"></span></a>
+      </li>
+
+      
+      <li class="social-item">
+        <a href="//github.com/vdubois" title="GitHub"><span class="icon icon-github"></span></a>
+      </li>
+
+      <li class="social-item">
+        <a href="//twitter.com/vdubois" title="Twitter"><span class="icon icon-twitter"></span></a>
+      </li>
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <li class="social-item">
+        <a href="//www.linkedin.com/in/vincent-dubois-5463b08b" title="Linkedin"><span class="icon icon-linkedin"></span></a>
+      </li>
+
+      
+
+      
+
+      
+
+      <li class="social-item">
+        <a href="/index.xml"><span class="icon icon-rss" title="RSS"></span></a>
+      </li>
+
+    </ul>
+  </nav>
+</header>
+
+  <section class="main post-detail">
+    <header class="post-header">
+      <h1 class="post-title">Critique du livre Serverless architectures on AWS with examples using AWS Lambda</h1>
+      <p class="post-meta">@Vincent Dubois · Feb 14, 2018 · 5 min. de lecture</p>
+    </header>
+    <article class="post-content">
+
+<p><img src="data:image/jpeg;base64,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" alt="Serverless architectures on AWS" /> Voici une critique sans prétention de ce premier livre que j&rsquo;entreprends sur Serverless alors que voilà quelques mois que j&rsquo;utilise pleinement cette technologie de façon industrialisée sur un projet pour un client.</p>
+
+<p>Le plan du livre a l&rsquo;air vraiment pas mal au premier abord. Tout tourne autour de la création d&rsquo;un site web style Youtube de partage de vidéos. On monte notamment un pipeline de transcodage des vidéos postées par les utilisateurs en différents format à l&rsquo;aide de lambdas, et de S3 pour la partie stockage.</p>
+
+<p>L&rsquo;auteur du livre n&rsquo;est autre que Peter Sbarski, créateur de la conférence déjà reconnue <a href="https://serverlessconf.io">Serverlessconf</a> et vice-président de l&rsquo;ingénierie chez <a href="https://acloud.guru/">acloud.guru</a>. On peut donc s&rsquo;attendre à un très bon bouquin.</p>
+
+<p>Dans la première partie du livre, l&rsquo;auteur aborde le sujet du pourquoi Serverless. Il nous parle des avantages et des inconvénients de Serverless. Cette partie est intéressante, bien qu&rsquo;un peu courte. Ensuite vient un chapitre sur les différents patterns de Serverless. Je n&rsquo;ai pas appris grand chose, mais cela peut être intéressant pour des personnes qui découvrent les concepts.</p>
+
+<p>Le titre du chapitre 3, &ldquo;Building a serverless application&rdquo;, est très trompeur : on s&rsquo;attend à construire une application avec des vrais outils de développement. C&rsquo;est plus en fait un tutoriel sur comment coder sa première lambda. Le côté cliquodrome avec des captures d&rsquo;écran de la console Amazon fait un peu peur, sincèrement en tant que débutant sur le sujet moi ça m&rsquo;aurait complètement bloqué. Il faut passer outre ce point de bloquage pour continuer.
+Pour déployer le code, c&rsquo;est un peu du bricolage. Je suis franchement étonné que l&rsquo;auteur ne commence pas à parler des outils de développement standards à ce moment là.</p>
+
+<p>Le chapitre 4, &ldquo;Setting up your cloud&rdquo;, est un tour d&rsquo;horizon des différents produits d&rsquo;AWS pour la sécurité, le monitoring, les logs, et il est sincèrement pas mal. Le sujet des coûts de la plateforme est également abordé, ce qui est un plus. N&rsquo;espérez pas avoir une réponse à la question : &ldquo;Et si je veux héberger une application, combien ça va me coûter ?&rdquo;. Cette question est trop complexe et dépend de beaucoup trop de facteurs.</p>
+
+<p>La deuxième partie commence par aborder le sujet de l&rsquo;authentification et de l&rsquo;autorisation. J&rsquo;en attends pas mal car j&rsquo;utilise du full Amazon pour ces deux choses en production (IAM pour les autorisations et Cognito pour l&rsquo;authentification), et le livre propose une alternative. Le chapitre présente bien cette alternative qui est Auth0, un service que je ne connaissais que de nom. L&rsquo;intégration de ce service avec Lambda est très bien expliqué et détaillé.</p>
+
+<p>On enchaîne dans le dur du sujet avec les lambdas. Quelques explications intéressantes sur les caractéristiques des lambdas. Peu de choses que je ne savais déjà, mais néanmoins intéressant. Encore une fois, l&rsquo;auteur démontre tout uniquement via la console Amazon et c&rsquo;est un peu dommage. Le sujet des tests unitaires est un petit peu abordé, mais là je reste carrément sur ma fin. Je repars sans rien, avec surtout pas de vision sur le test unitaire de Lambdas. Dommage !</p>
+
+<p>Le chapitre suivant parle de l&rsquo;API Gateway, c&rsquo;est très basique mais le minimum syndical est fait avec par exemple les templates de réponse, les custom authorizers (cela fait partie de l&rsquo;exemple du livre) et l&rsquo;intégration avec les Lambdas. Une dernière partie sur l&rsquo;optimisation sauve le chapitre. Il est question notamment de limitations d&rsquo;appels et de caching.</p>
+
+<p>On attaque enfin la dernière partie du livre. A commencer par un chapitre entier sur S3. Selon moi, ce chapitre tombe ici &ldquo;bizarrement&rdquo; et aurait pu être dilué dans le reste du livre. Pas grave, on apprend tout de même quelques caractéristiques intéressantes et un peu cachées du service de stockage d&rsquo;Amazon. Le chapitre suivant concerne la partie base de données avec un service externe à Amazon, Firebase. C&rsquo;est même un concurrent, car il s&rsquo;agit d&rsquo;une base de données NoSQL hébergée par Google. J&rsquo;avais déjà entendu pas mal de bien de ce service. Le livre le vend bien également. On ne voit néanmoins que la partie base de données de Firebase (à priori le service réserve d&rsquo;autres surprises à découvrir). Une des killer features de ce service est le support des websockets : vous pouvez faire des mises à jour de votre base de données et les voir en direct sur votre site web. Très bon point ! Pour avoir utilisé DynamoDB qui est le concurrent chez AWS, je peux dire qu&rsquo;on est un cran nettement au-dessus.</p>
+
+<p>Pour le dernier chapitre du livre, l&rsquo;auteur traite des sujets qui m&rsquo;ont manqué tout le long du livre, et malheureusement il manque vraiment la quantité. Le sujet de l&rsquo;eventual consistency est rapidement abordé avec une solution, mais on aurait bien aimé un exemple concret. Le seul point positif de ce chapitre est la notion de Step functions qui est un ordonnanceur sous forme de state machine de lambdas. Un concept intéressant qui permet d&rsquo;automatiser certains pipelines.</p>
+
+<p>Pour finir, on trouve des annexes en vrac qui sont pour la plupart inintéressantes et qui n&rsquo;apportent rien au livre. Une seule vaut le coup, elle évoque les frameworks Serverless et SAM. Il y a pas mal de choses sur Serverless, notamment comment développer un plugin pour ce framework. Surprenant, quand le livre n&rsquo;en dit pas un mot jusque-là.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>Un peu décevant en terme de pronfondeur de contenu, ce livre est néanmoins très bien pour les personnes qui ne connaissent pas Amazon Web Services. On regrettera le manque de matière concernant l&rsquo;industrialisation des projets Serverless notamment. C&rsquo;est une partie qui m&rsquo;a beaucoup manqué lors de mon apprentissage de la plateforme. Les différentes briques d&rsquo;AWS, ainsi que leur intérêt sont bien démontrés. Il manque néanmoins quelques essentiels, comme <a href="https://aws.amazon.com/fr/xray/">X-Ray</a>, <a href="https://aws.amazon.com/fr/dynamodb/">DynamoDB</a> qui ne sont pas abordés, ce qui est bien dommage. Pour synthétiser : je ne recommande ce livre que pour des non-confirmés, sous peine de grosse céception.</p>
+</article>
+    <footer class="post-footer">
+      
+      <ul class="post-tags">
+        
+          <li><a href="/tags/aws"><span class="tag">AWS</span></a></li>
+        
+          <li><a href="/tags/serverless"><span class="tag">Serverless</span></a></li>
+        
+          <li><a href="/tags/lambda"><span class="tag">Lambda</span></a></li>
+        
+          <li><a href="/tags/architecture"><span class="tag">Architecture</span></a></li>
+        
+      </ul>
+      
+      <p class="post-copyright">
+        
+      </p>
+    </footer>
+    
+      <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "yet-another-dev-blog" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      
+    
+  </section>
+  <footer class="site-footer">
+  <p>© 2017-2018 Yet another dev blog</p>
+  <p>Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank">Nuo</a>.</p>
+  
+</footer>
+
+
+
+<script async src="//cdn.bootcss.com/video.js/6.2.8/alt/video.novtt.min.js"></script>
+<script async src="//cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\[','\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    }
+  });
+</script>
+<script type="text/x-mathjax-config">
+  // Fix <code> tags after MathJax finishes running. This is a
+  // hack to overcome a shortcoming of Markdown. Discussion at
+  // https://github.com/mojombo/jekyll/issues/199
+  MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+  });
+</script>
+
+<script src="/js/bundle.js"></script>
+
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-111523320-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+  </body>
+</html>
