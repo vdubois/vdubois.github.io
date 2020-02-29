@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Yet another dev blog</title>
@@ -6,10 +6,41 @@
     <description>Recent content on Yet another dev blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>fr-fr</language>
-    <lastBuildDate>Wed, 14 Feb 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 29 Feb 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://vdubois.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Déjà 6 ans avec IntelliJ</title>
+      <link>https://vdubois.github.io/2020/02/d%C3%A9j%C3%A0-6-ans-avec-intellij/</link>
+      <pubDate>Sat, 29 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://vdubois.github.io/2020/02/d%C3%A9j%C3%A0-6-ans-avec-intellij/</guid>
+      <description>Cela fait six ans que j&amp;rsquo;utilise IntelliJ Idea, aussi bien dans le cadre privé que dans le cadre professionnel.
+Après dix années passés à utiliser Eclipse, cela a été un changement conséquent, mais je ne regrette absolument pas. Ce que je regrette en revanche, c&amp;rsquo;est de ne pas avoir découvert IntelliJ plus tôt.
+IntelliJ, c&amp;rsquo;est avant tout un IDE construit autour d&amp;rsquo;une cohérence globale. Quand on utilise une fonctionnalité dans un contexte (quand on code en Java par exemple), on pourra retrouver un équivalent dans un autre contexte.</description>
+    </item>
+    
+    <item>
+      <title>Retour d&#39;expérience Vue.JS</title>
+      <link>https://vdubois.github.io/2020/02/retour-dexp%C3%A9rience-vue.js/</link>
+      <pubDate>Sat, 15 Feb 2020 15:45:15 +0100</pubDate>
+      
+      <guid>https://vdubois.github.io/2020/02/retour-dexp%C3%A9rience-vue.js/</guid>
+      <description>Après un an d&amp;rsquo;utilisation de Vue.JS en entreprise, voici un petit retour d&amp;rsquo;expérience dans lequel je vais vous partager mon ressenti sur l&amp;rsquo;utilisation de ce framework dans le cadre d&amp;rsquo;un vrai projet.
+Le premier atout que l&amp;rsquo;on découvre assez vite quand on se lance avec Vue.JS, c&amp;rsquo;est sa simplicité. Pas de fioritures, juste l&amp;rsquo;essentiel permettant de réaliser des développements professionnels.
+La communauté Vue.JS est maintenant assez conséquente, et on trouve sans aucun problème une multitude de composants ou de plugins open source pour tous les besoins.</description>
+    </item>
+    
+    <item>
+      <title>Rex Utilisation Vuejs</title>
+      <link>https://vdubois.github.io/posts/rex-utilisation-vuejs/</link>
+      <pubDate>Sat, 15 Feb 2020 15:44:16 +0100</pubDate>
+      
+      <guid>https://vdubois.github.io/posts/rex-utilisation-vuejs/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Critique du livre Serverless architectures on AWS with examples using AWS Lambda</title>
@@ -42,11 +73,29 @@ Le tout premier problème rencontré est un problème assez évident : nous avio
     </item>
     
     <item>
+      <title>My First Post</title>
+      <link>https://vdubois.github.io/posts/my-first-post/</link>
+      <pubDate>Mon, 05 Feb 2018 21:13:13 +0100</pubDate>
+      
+      <guid>https://vdubois.github.io/posts/my-first-post/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>2017 12 16 Formation Angular De Zero a Ninja Par Ninja Squad</title>
+      <link>https://vdubois.github.io/posts/2017-12-16-formation-angular-de-zero-a-ninja-par-ninja-squad/</link>
+      <pubDate>Mon, 05 Feb 2018 21:05:26 +0100</pubDate>
+      
+      <guid>https://vdubois.github.io/posts/2017-12-16-formation-angular-de-zero-a-ninja-par-ninja-squad/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Mon premier module node : aws-sdk-fluent-builder</title>
-      <link>https://vdubois.github.io/2017/12/mon-premier-module-node--aws-sdk-fluent-builder/</link>
+      <link>https://vdubois.github.io/2017/12/mon-premier-module-node-aws-sdk-fluent-builder/</link>
       <pubDate>Thu, 21 Dec 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://vdubois.github.io/2017/12/mon-premier-module-node--aws-sdk-fluent-builder/</guid>
+      <guid>https://vdubois.github.io/2017/12/mon-premier-module-node-aws-sdk-fluent-builder/</guid>
       <description>Pourquoi encore un autre module node ? Depuis quelques mois je travaille sur un projet serverless pour un client. Nos développements sont réalisés principalement en Typescript (car nous avons une partie front Angular).
 Pour le back, nous utilisons le framework serverless afin de déployer nos lambdas et c&amp;rsquo;est un super framework. Dans les cuisines, serverless utilise AWS CloudFormation pour construire la stack applicative. On peut définir tout ce qu&amp;rsquo;on veut : lambdas, endpoints HTTP avec API Gateway, mais aussi tout ce qui est ressources compatibles Cloudformation.</description>
     </item>
@@ -58,7 +107,7 @@ Pour le back, nous utilisons le framework serverless afin de déployer nos lambd
       
       <guid>https://vdubois.github.io/2017/12/formation-angular-de-z%C3%A9ro-%C3%A0-ninja-par-ninja-squad/</guid>
       <description>Fin octobre, j&amp;rsquo;ai suivi la formation &amp;ldquo;Angular : de Zéro à Ninja animée par Jean Baptiste Nizet dans les locaux de ma société.
-Je tenais à faire un petit retour car cette formation est d&amp;rsquo;une qualité très élevée. Non seulement on apprend tout ce qui est nécessaire à être opérationnel sur du développement d&amp;rsquo;applications Angular, mais en plus, Ninja Squad nous donne accès à sa plateforme d&amp;rsquo;exercices de formation en ligne ainsi qu&amp;rsquo;à son ebook Angular.</description>
+Je tenais à faire un petit retour car cette formation est d&amp;rsquo;une qualité très élevée. Non seulement on apprend tout ce qui est nécessaire à être opérationnel sur du développement d&amp;rsquo;applications Angular, mais en plus, Ninja Squad nous donne accès à sa plateforme d&amp;rsquo;exercices de formation en ligne ainsi qu&#39;à son ebook Angular.</description>
     </item>
     
   </channel>

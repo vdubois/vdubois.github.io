@@ -40,7 +40,7 @@ Nom de domaine La première étape a été l&amp;rsquo;achat du nom de domaine. 
 
 
 
-<meta name="generator" content="Hugo 0.36" />
+<meta name="generator" content="Hugo 0.63.2" />
 
 
 <link rel="canonical" href="https://vdubois.github.io/2018/02/pas-%C3%A0-pas-pour-h%C3%A9berger-son-site-personnel-sur-aws/" />
@@ -224,130 +224,87 @@ Nom de domaine La première étape a été l&amp;rsquo;achat du nom de domaine. 
       <h1 class="post-title">Pas à pas pour héberger son site personnel sur AWS</h1>
       <p class="post-meta">@Vincent Dubois · Feb 12, 2018 · 8 min. de lecture</p>
     </header>
-    <article class="post-content">
-
-<p>Dans cet article, j&rsquo;aimerais partager la méthode que j&rsquo;ai employé pour mettre en ligne mon site personnel sur AWS. En effet, j&rsquo;ai eu du mal à trouver des articles complets sur la toile afin de paramétrer tout ça. Finalement, avec un peu de patience et de persévérance, je suis arrivé à mes fins.</p>
-
+    <article class="post-content"><p>Dans cet article, j&rsquo;aimerais partager la méthode que j&rsquo;ai employé pour mettre en ligne mon site personnel sur AWS. En effet, j&rsquo;ai eu du mal à trouver des articles complets sur la toile afin de paramétrer tout ça. Finalement, avec un peu de patience et de persévérance, je suis arrivé à mes fins.</p>
 <h2 id="nom-de-domaine">Nom de domaine</h2>
-
 <p>La première étape a été l&rsquo;achat du nom de domaine. J&rsquo;ai choisi OVH car c&rsquo;est un des registrars les moins chers, et aussi car il m&rsquo;a été conseillé par un collègue freelance qui a l&rsquo;habitude d&rsquo;utiliser OVH pour ses clients. L&rsquo;interface d&rsquo;administration notamment est pas mal, elle est assez simple à utiliser.</p>
-
-<h2 id="préparation-du-contenu-côté-aws-créer-un-bucket-dans-s3">Préparation du contenu côté AWS : créer un bucket dans S3</h2>
-
+<h2 id="préparation-du-contenu-côté-aws--créer-un-bucket-dans-s3">Préparation du contenu côté AWS : créer un bucket dans S3</h2>
 <p>Dans tous les articles que j&rsquo;ai pu trouver, il est conseillé de créer un bucket dans S3 dont le nom correspond exactement au nom de domaine du site que l&rsquo;on souhaite héberger. Je pense que ce n&rsquo;est pas une obligation, car on ne passe pas directement par S3, mais par Cloudfront, qui se positionne devant le bucket pour diriger le traffic.</p>
-
 <p>Néanmoins, cela permet de &ldquo;réserver&rdquo; le nom de bucket dans S3 car les noms sont uniques à l&rsquo;international. Cela permet donc par la suite de ne pas se faire voler le nom de bucket qui, quelquepart, nous revient.</p>
-
 <p>Pour réaliser cette opération :</p>
-
 <ul>
 <li>Se connecter à la console AWS</li>
 <li>Aller dans S3</li>
 <li>Cliquer sur &ldquo;Créer un compartiment&rdquo;</li>
 <li>Choisir un nom de compartiment (voir paragraphe ci-dessus) ainsi qu&rsquo;une région géographique et cliquer sur &ldquo;Créer&rdquo;</li>
 </ul>
-
-<h2 id="préparation-du-contenu-côté-aws-uploader-le-contenu-et-le-rendre-public">Préparation du contenu côté AWS : uploader le contenu et le rendre public</h2>
-
+<h2 id="préparation-du-contenu-côté-aws--uploader-le-contenu-et-le-rendre-public">Préparation du contenu côté AWS : uploader le contenu et le rendre public</h2>
 <p>Pour automatiser l&rsquo;upload des ressources statiques dans S3, j&rsquo;utilise <a href="https://serverless.com">serverless</a> avec le plugin <a href="https://github.com/fernando-mc/serverless-finch">serverless-finch</a>, ce plugin permet la mise à jour des sources, mais aussi l&rsquo;exposition du bucket en tant que site web avec les bons droits.</p>
-
 <p>Installer serverless en global et le plugin en local :</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">npm install -g serverless
-npm install --save serverless-finch</code></pre></div>
-<p>Voici le fichier serverless.yml minimal permettant de réaliser l&rsquo;opération :</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">service: monsite.fr
+npm install --save serverless-finch
+</code></pre></div><p>Voici le fichier serverless.yml minimal permettant de réaliser l&rsquo;opération :</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">service</span>: monsite.fr
 
-provider:
-  name: aws
-  region: eu-west-<span style="color:#ae81ff">1</span>
+<span style="color:#66d9ef">provider</span>:
+  <span style="color:#66d9ef">name</span>: aws
+  <span style="color:#66d9ef">region</span>: eu-west<span style="color:#ae81ff">-1</span>
 
-plugins:
+<span style="color:#66d9ef">plugins</span>:
   - serverless-finch
 
-custom:
-  client:
-    bucketName: monsite.fr
-    distributionFolder: dist</code></pre></div>
-<p>Pour déployer le site, taper la commande :</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">serverless client deploy</code></pre></div>
-<p>Le site est déployé, on peut le vérifier en accédant à l&rsquo;URL (<a href="http://monsite.fr.s3-website-eu-west-1.amazonaws.com/">http://monsite.fr.s3-website-eu-west-1.amazonaws.com/</a>). On peut passer à l&rsquo;étape suivante.</p>
-
+<span style="color:#66d9ef">custom</span>:
+  <span style="color:#66d9ef">client</span>:
+    <span style="color:#66d9ef">bucketName</span>: monsite.fr
+    <span style="color:#66d9ef">distributionFolder</span>: dist
+</code></pre></div><p>Pour déployer le site, taper la commande :</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">serverless client deploy
+</code></pre></div><p>Le site est déployé, on peut le vérifier en accédant à l&rsquo;URL (<a href="http://monsite.fr.s3-website-eu-west-1.amazonaws.com/)">http://monsite.fr.s3-website-eu-west-1.amazonaws.com/)</a>. On peut passer à l'étape suivante.</p>
 <h2 id="créer-la-distribution-cloudfront">Créer la distribution Cloudfront</h2>
-
 <p>Amazon S3 permet d&rsquo;héberger des sites statiques, mais dès qu&rsquo;il s&rsquo;agit de gérer la moindre règle de redirection ou le moins code d&rsquo;erreur, ce n&rsquo;est vraiment pas prévu pour. Amazon, pour rendre ce service (et bien plus encore) propose Cloudfront. Bonne nouvelle pour nous, encore un service gratuit.</p>
-
 <p>Il faut donc se rendre dans la console Amazon dans la partie Cloudfront.</p>
-
 <p>Cliquer sur &ldquo;Créer une distribution&rdquo;, puis &ldquo;Mise en route&rdquo; dans la partie &ldquo;Web&rdquo;.</p>
-
 <p>Remplir le formulaire de création de la distribution :</p>
-
 <ul>
 <li>Dans le champ &ldquo;Chemin d&rsquo;origine&rdquo;, sélectionner le bucket S3 créé au préalable (il est présenté sous forme d&rsquo;URL).</li>
 <li>Dans le champ &ldquo;Mise en cache d&rsquo;un objet&rdquo;, sélectionner &ldquo;Personnaliser&rdquo; et positionner les trois champs suivants à 0. Cela permet de ne jamais garder en cache des ressources du site.</li>
-<li>Dans &ldquo;Paramètres de distribution&rdquo; &gt; &ldquo;Autres noms de domaine (CNAME)&rdquo;, saisir le nom de domaine sans le &ldquo;http(s)://&rdquo; devant.</li>
+<li>Dans &ldquo;Paramètres de distribution&rdquo; &gt; &ldquo;Autres noms de domaine (CNAME)&quot;, saisir le nom de domaine sans le &ldquo;http(s)://&rdquo; devant.</li>
 <li>Laisser le certificat cloudfront par défaut pour l&rsquo;instant.</li>
 <li>Plus bas, dans &ldquo;Objet racine par défaut&rdquo;, saisir &ldquo;index.html&rdquo; afin que le fichier index.html soit utilisé quand vous accèderez à la racine de votre site.</li>
 <li>Cliquer sur &ldquo;Créer une distribution&rdquo;</li>
 </ul>
-
 <p>Le temps de création est très long (compter 10 à 20 minutes).</p>
-
 <p>Il nous manque un petit détail. Il est nécessaire de créer une redirection vers la racine du site lors d&rsquo;une erreur 404 car celle que fournit S3 par défaut n&rsquo;est pas des plus réussies.</p>
-
 <p>Cliquer sur la distribution nouvellement créée dans la liste des distributions Cloudfront, aller sur l&rsquo;onglet &ldquo;Pages d&rsquo;erreurs&rdquo;. Cliquer sur le bouton &ldquo;Créer une réponse d&rsquo;erreur personnalisée&rdquo;. Dans le formulaire qui s&rsquo;affiche, choisir &ldquo;404&rdquo; dans &ldquo;Code d&rsquo;erreur HTTP&rdquo;, sélectionner &ldquo;Oui&rdquo; dans &ldquo;Personnaliser une réponse d&rsquo;erreur&rdquo;. Enfin, saisir &ldquo;/index.html&rdquo; dans &ldquo;Chemin de la page de réponse&rdquo; et sélectionner &ldquo;200&rdquo; dans &ldquo;Code de réponse HTTP&rdquo;. Valider la création.</p>
-
 <p>De nouveau, attendre 10 à 20 minutes que Cloudfront prenne en compte la modification.</p>
-
 <h2 id="faire-pointer-le-nom-de-domaine-vers-aws">Faire pointer le nom de domaine vers AWS</h2>
-
 <p>Amazon propose un service pour router un nom de domaine vers des sites hébergés dans leur infrastructure. Ce service s&rsquo;appelle Route 53. En fait, ce service fait beaucoup plus de choses, c&rsquo;est notamment un registrar reconnu, depuis qu&rsquo;il s&rsquo;est associé avec Ghandi.</p>
-
 <p>Une nouvelle fois, il faut se rendre dans la console Amazon, dans la partie Route 53 désormais.</p>
-
-<p>Dans le menu principal, cliquer sur &ldquo;Zones hébergées&rdquo;, puis sur le bouton &ldquo;Créer une zone hébergée&rdquo;. Dans la partie droite de l&rsquo;écran, un formulaire s&rsquo;ouvre. Remplir avec le nom de domaine souhaité (ex. : monsite.fr). Cliquer sur &ldquo;Créer&rdquo;.</p>
-
+<p>Dans le menu principal, cliquer sur &ldquo;Zones hébergées&rdquo;, puis sur le bouton &ldquo;Créer une zone hébergée&rdquo;. Dans la partie droite de l'écran, un formulaire s&rsquo;ouvre. Remplir avec le nom de domaine souhaité (ex. : monsite.fr). Cliquer sur &ldquo;Créer&rdquo;.</p>
 <p>Attention : Amazon facture 0.50 dollar la création d&rsquo;une zone hébergée.</p>
-
-<p>Amazon vient de créer une zone hébergée avec le nom de domaine, mais il vient surtout d&rsquo;y associer 4 serveurs DNS qui vont servir à rediriger le nom de domaine vers AWS. En attendant de configurer cette partie dans OVH, il faut dire à Route 53 vers quoi router le traffic du nom de domaine. Pour cela, cliquer sur &ldquo;Créer un jeu d&rsquo;enregistrements&rdquo;. Si vous souhaitez un préfixe (genre www.monsite.fr) alors il faut saisir les &lsquo;www&rsquo; à ce moment là. Sélectionner le type &ldquo;A - Adresse IPv4&rdquo;. Dans &ldquo;Alias&rdquo;, sélectionner &ldquo;Oui&rdquo; et choisir la distribution Cloudfront créée au préalable. Cliquer sur &ldquo;Créer&rdquo;. Renouveler l&rsquo;opération de création d&rsquo;un jeu d&rsquo;enregistrements en sélectionnant &ldquo;AAAA - Adresse IPv6&rdquo;.</p>
-
+<p>Amazon vient de créer une zone hébergée avec le nom de domaine, mais il vient surtout d&rsquo;y associer 4 serveurs DNS qui vont servir à rediriger le nom de domaine vers AWS. En attendant de configurer cette partie dans OVH, il faut dire à Route 53 vers quoi router le traffic du nom de domaine. Pour cela, cliquer sur &ldquo;Créer un jeu d&rsquo;enregistrements&rdquo;. Si vous souhaitez un préfixe (genre <a href="http://www.monsite.fr">www.monsite.fr</a>) alors il faut saisir les &lsquo;www&rsquo; à ce moment là. Sélectionner le type &ldquo;A - Adresse IPv4&rdquo;. Dans &ldquo;Alias&rdquo;, sélectionner &ldquo;Oui&rdquo; et choisir la distribution Cloudfront créée au préalable. Cliquer sur &ldquo;Créer&rdquo;. Renouveler l&rsquo;opération de création d&rsquo;un jeu d&rsquo;enregistrements en sélectionnant &ldquo;AAAA - Adresse IPv6&rdquo;.</p>
 <p>Tout est prêt côté Amazon pour recevoir le traffic. La fin de la configuration se passe dorénavant dans votre registrar.</p>
-
 <h2 id="configuration-des-dns-amazon-dans-la-console-ovh">Configuration des DNS Amazon dans la console OVH</h2>
-
 <p>Si comme moi vous êtes chez OVH, rendez-vous dans la console d&rsquo;administration afin de paramétrer les DNS Amazon.</p>
-
 <p>Dans le menu, cliquer sur Domaine &gt; monsite.fr. Aller dans l&rsquo;onglet &ldquo;Serveurs DNS&rdquo;. Cliquer sur le bouton &ldquo;Modifier les serveurs DNS&rdquo;. Dans le formulaire qui apparaît, saisir les 4 serveurs DNS fournis dans la configuration de Route 53. Cliquer sur &ldquo;Appliquer la configuration&rdquo;.</p>
-
-<p>Soyez très patients. Cette étape peut durer jusqu&rsquo;à 48h. A cette issue, votre site est disponible !!</p>
-
+<p>Soyez très patients. Cette étape peut durer jusqu'à 48h. A cette issue, votre site est disponible !!</p>
 <p>Disclaimer : j&rsquo;ai pris le parti ici de supprimer les DNS OVH et de ne renseigner que ceux d&rsquo;Amazon. Cela n&rsquo;engage que moi de procéder ainsi, car je n&rsquo;ai qu&rsquo;un nom de domaine, et qu&rsquo;il pointe sur Amazon.</p>
-
 <h2 id="et-maintenant-finissons-en-beauté-en-rajoutant-le-https">Et maintenant, finissons en beauté en rajoutant le HTTPS</h2>
-
 <h3 id="générer-le-certificat">Générer le certificat</h3>
-
 <p>Votre nouveau site tout nouveau tout beau est disponible mais il n&rsquo;a pas le HTTPS ?</p>
-
 <p>Plus précisément, il a le HTTPS, mais avec un logo rouge, couleur de l&rsquo;erreur, ou un https bien barré en rouge qui ne prête pas à confusion. Pas sympa.</p>
-
 <p>Ce serait dommage de s&rsquo;arrêter là, alors qu&rsquo;il n&rsquo;y a plus besoin désormais de payer des fortunes pour avoir son certificat HTTPS rattaché à son nom de domaine. Si vous imaginiez vous générer vous même votre certificat, passez votre chemin, ce n&rsquo;est pas une bonne idée.</p>
-
 <p>Depuis quelques années, il est tout à fait possible d&rsquo;avoir des certificats HTTPS reconnus dans les principaux navigateurs grâce à <a href="https://letsencrypt.org/">Let&rsquo;s encrypt</a>. La seule contrainte pour pouvoir générer un certificat est de prouver à Let&rsquo;s encrypt que vous êtes le propriétaire de votre nom de domaine. Pour cette raison, les étapes précédentes de ce pas à pas doivent être complètement terminées.</p>
-
-<p>Bien évidemment je suis loin d&rsquo;être le premier à demander un certificat Let&rsquo;s encrypt pour Cloudfront, il existe des outils qui permettent d&rsquo;automatiser la création. J&rsquo;ai personnellement suivi <a href="https://medium.com/@richardkall/setup-lets-encrypt-ssl-certificate-on-amazon-cloudfront-b217669987b2">cet article</a> pour créer mon certificat.</p>
-
+<p>Bien évidemment je suis loin d'être le premier à demander un certificat Let&rsquo;s encrypt pour Cloudfront, il existe des outils qui permettent d&rsquo;automatiser la création. J&rsquo;ai personnellement suivi <a href="https://medium.com/@richardkall/setup-lets-encrypt-ssl-certificate-on-amazon-cloudfront-b217669987b2">cet article</a> pour créer mon certificat.</p>
 <p>Voici les étapes à réaliser :</p>
-
 <ul>
 <li>Tout d&rsquo;abord, il faut installer l&rsquo;outillage Python nécessaire au script :</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">pip install letsencrypt <span style="color:#f92672">&amp;&amp;</span> pip install letsencrypt-s3front</code></pre></div>
-<ul>
-<li>Avant de passer à l&rsquo;étape suivante, si comme moi vous n&rsquo;êtes root, passer en mode root avec la commande :</li>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">pip install letsencrypt <span style="color:#f92672">&amp;&amp;</span> pip install letsencrypt-s3front
+</code></pre></div><ul>
+<li>Avant de passer à l'étape suivante, si comme moi vous n'êtes root, passer en mode root avec la commande :</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sudo su</code></pre></div>
-<ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sudo su
+</code></pre></div><ul>
 <li>Créer le certificat avec la commande suivante :</li>
 </ul>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">AWS_ACCESS_KEY_ID<span style="color:#f92672">=</span>&lt;ACCESS_KEY&gt; <span style="color:#ae81ff">\
@@ -356,34 +313,23 @@ custom:
 </span><span style="color:#ae81ff"></span>-i letsencrypt-s3front:installer <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>--letsencrypt-s3front:auth-s3-bucket &lt;BUCKET&gt; <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>--letsencrypt-s3front:auth-s3-region &lt;REGION&gt; <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>--letsencrypt-s3front:installer-cf-distribution-id <span style="color:#ae81ff">\&lt;</span>DISTRIBUTION_ID&gt; -d &lt;DOMAIN&gt;</code></pre></div>
-<p>Cette opération négocie avec Let&rsquo;s encrypt pour générer le certificat en prouvant à l&rsquo;aide du dépôt d&rsquo;un fichier sur votre bucket que le domaine est bien le vôtre. Cela n&rsquo;installe pas le certificat sur AWS cependant.</p>
-
+</span><span style="color:#ae81ff"></span>--letsencrypt-s3front:installer-cf-distribution-id <span style="color:#ae81ff">\&lt;</span>DISTRIBUTION_ID&gt; -d &lt;DOMAIN&gt;
+</code></pre></div><p>Cette opération négocie avec Let&rsquo;s encrypt pour générer le certificat en prouvant à l&rsquo;aide du dépôt d&rsquo;un fichier sur votre bucket que le domaine est bien le vôtre. Cela n&rsquo;installe pas le certificat sur AWS cependant.</p>
 <p>La commande tapée ci-dessus, une fois finie, donne les chemins d&rsquo;accès aux différentes parties du certificat (fichiers fullchain.pem et privkey.pem). Mettez-les de côté, on va en avoir besoin juste après.</p>
-
 <h3 id="importer-le-certificat">Importer le certificat</h3>
-
 <p>Se connecter à la console Amazon. Aller dans &ldquo;Certificate Manager&rdquo;. Cliquer sur &ldquo;Démarrage&rdquo;. Une nouvelle page s&rsquo;ouvre dans laquelle il faut cliquer sur &ldquo;Importer un certificat&rdquo;.</p>
-
 <p>Un formulaire de saisie apparaît :</p>
-
 <ul>
-<li>Dans &ldquo;Corps du certificat&rdquo;, saisir le contenu de la première partie du fichier fullchain.pem généré dans l&rsquo;étape précédente.</li>
-<li>Dans &ldquo;Clé privée du certificat&rdquo;, saisir le contenu du fichier privkey.pem généré dans l&rsquo;étape précédente.</li>
-<li>Dans &ldquo;Chaine de certificat&rdquo;, saisir le contenu de la deuxième partie du fichier fullchain.pem généré dans l&rsquo;étape précédente.</li>
+<li>Dans &ldquo;Corps du certificat&rdquo;, saisir le contenu de la première partie du fichier fullchain.pem généré dans l'étape précédente.</li>
+<li>Dans &ldquo;Clé privée du certificat&rdquo;, saisir le contenu du fichier privkey.pem généré dans l'étape précédente.</li>
+<li>Dans &ldquo;Chaine de certificat&rdquo;, saisir le contenu de la deuxième partie du fichier fullchain.pem généré dans l'étape précédente.</li>
 </ul>
-
 <p>Cliquer sur vérifier et importer. Valider.</p>
-
 <p>Retourner dans Cloudfront. Sélectionner la distribution correspondant au site monsite.fr. Cliquer sur modifier. Dans la partie &ldquo;Certificat SSL&rdquo;, le certificat nouvellement importé doit apparaître. Le sélectionner. Valider en cliquant sur &ldquo;Oui, Modifier&rdquo;.</p>
-
 <p>La distribution Cloudfront se redéploie en appliquant le certificat Let&rsquo;s encrypt. Prévoir quelques mot croisés, le temps d&rsquo;attente est vraiment très long cette fois-ci. Quand Cloudfront affiche que la distribution est déployée, lancez votre URL en HTTPS, vous avez un beau certificat HTTPS valide !</p>
-
 <h2 id="conclusion">Conclusion</h2>
-
-<p>Il manque une pierre à l&rsquo;édifice que je n&rsquo;aborderai pas dans cet article, c&rsquo;est l&rsquo;automatisation de la génération du certificat. Les certificats Let&rsquo;s encrypt sont certes gratuits, mais ils ne sont valides que pendant 3 mois. Il ne faut donc pas oublier de les renouveler.</p>
-
-<p>En ce qui concerne AWS, on peut se permettre d&rsquo;héberger son site personnel, c&rsquo;est relativement facile à mettre en oeuvre, pour une somme très faible (0.5 dollar par nom de domaine). Les requêtes DNS sont payantes également, compter quelques centimes d&rsquo;euros par mois. Attention toutefois, si votre site commence à avoir du traffic, alors cela pourrait vous coûter plus cher. En effet, Cloudfront est gratuit jusqu&rsquo;à 2 millions de requêtes sur vos ressources statiques.</p>
+<p>Il manque une pierre à l'édifice que je n&rsquo;aborderai pas dans cet article, c&rsquo;est l&rsquo;automatisation de la génération du certificat. Les certificats Let&rsquo;s encrypt sont certes gratuits, mais ils ne sont valides que pendant 3 mois. Il ne faut donc pas oublier de les renouveler.</p>
+<p>En ce qui concerne AWS, on peut se permettre d&rsquo;héberger son site personnel, c&rsquo;est relativement facile à mettre en oeuvre, pour une somme très faible (0.5 dollar par nom de domaine). Les requêtes DNS sont payantes également, compter quelques centimes d&rsquo;euros par mois. Attention toutefois, si votre site commence à avoir du traffic, alors cela pourrait vous coûter plus cher. En effet, Cloudfront est gratuit jusqu'à 2 millions de requêtes sur vos ressources statiques.</p>
 </article>
     <footer class="post-footer">
       
@@ -404,12 +350,12 @@ custom:
       </ul>
       
       <p class="post-copyright">
-        
+        This post was published <strong>747</strong> days ago, content in the post may be inaccurate, even wrong now, please take risk yourself.
       </p>
     </footer>
     
       <div id="disqus_thread"></div>
-<script>
+<script type="application/javascript">
     var disqus_config = function () {
     
     
@@ -432,7 +378,7 @@ custom:
     
   </section>
   <footer class="site-footer">
-  <p>© 2017-2018 Yet another dev blog</p>
+  <p>© 2017-2020 Yet another dev blog</p>
   <p>Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank">Nuo</a>.</p>
   
 </footer>
@@ -466,12 +412,16 @@ custom:
 <script src="/js/bundle.js"></script>
 
 
-<script>
-window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-ga('create', 'UA-111523320-1', 'auto');
-ga('send', 'pageview');
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-111523320-1', 'auto');
+	
+	ga('send', 'pageview');
+}
 </script>
-<script async src='//www.google-analytics.com/analytics.js'></script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
 

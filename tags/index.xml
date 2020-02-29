@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Yet another dev blog</title>
@@ -6,22 +6,40 @@
     <description>Recent content in Tags on Yet another dev blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>fr-fr</language>
-    <lastBuildDate>Sat, 16 Dec 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 29 Feb 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://vdubois.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Angular</title>
-      <link>https://vdubois.github.io/tags/angular/</link>
-      <pubDate>Sat, 16 Dec 2017 00:00:00 +0000</pubDate>
+      <title>IntelliJ</title>
+      <link>https://vdubois.github.io/tags/intellij/</link>
+      <pubDate>Sat, 29 Feb 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://vdubois.github.io/tags/angular/</guid>
+      <guid>https://vdubois.github.io/tags/intellij/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Architecture</title>
+      <title>Typescript</title>
+      <link>https://vdubois.github.io/tags/typescript/</link>
+      <pubDate>Sat, 15 Feb 2020 15:45:15 +0100</pubDate>
+      
+      <guid>https://vdubois.github.io/tags/typescript/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Vue.js</title>
+      <link>https://vdubois.github.io/tags/vue.js/</link>
+      <pubDate>Sat, 15 Feb 2020 15:45:15 +0100</pubDate>
+      
+      <guid>https://vdubois.github.io/tags/vue.js/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>architecture</title>
       <link>https://vdubois.github.io/tags/architecture/</link>
       <pubDate>Wed, 14 Feb 2018 00:00:00 +0000</pubDate>
       
@@ -30,38 +48,11 @@
     </item>
     
     <item>
-      <title>Aws</title>
+      <title>AWS</title>
       <link>https://vdubois.github.io/tags/aws/</link>
       <pubDate>Wed, 14 Feb 2018 00:00:00 +0000</pubDate>
       
       <guid>https://vdubois.github.io/tags/aws/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Cloudfront</title>
-      <link>https://vdubois.github.io/tags/cloudfront/</link>
-      <pubDate>Mon, 12 Feb 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://vdubois.github.io/tags/cloudfront/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Dynamodb</title>
-      <link>https://vdubois.github.io/tags/dynamodb/</link>
-      <pubDate>Tue, 06 Feb 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://vdubois.github.io/tags/dynamodb/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Javascript</title>
-      <link>https://vdubois.github.io/tags/javascript/</link>
-      <pubDate>Thu, 21 Dec 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://vdubois.github.io/tags/javascript/</guid>
       <description></description>
     </item>
     
@@ -75,7 +66,25 @@
     </item>
     
     <item>
-      <title>Ovh</title>
+      <title>Serverless</title>
+      <link>https://vdubois.github.io/tags/serverless/</link>
+      <pubDate>Wed, 14 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://vdubois.github.io/tags/serverless/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Cloudfront</title>
+      <link>https://vdubois.github.io/tags/cloudfront/</link>
+      <pubDate>Mon, 12 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://vdubois.github.io/tags/cloudfront/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>OVH</title>
       <link>https://vdubois.github.io/tags/ovh/</link>
       <pubDate>Mon, 12 Feb 2018 00:00:00 +0000</pubDate>
       
@@ -102,20 +111,29 @@
     </item>
     
     <item>
-      <title>Serverless</title>
-      <link>https://vdubois.github.io/tags/serverless/</link>
-      <pubDate>Wed, 14 Feb 2018 00:00:00 +0000</pubDate>
+      <title>DynamoDB</title>
+      <link>https://vdubois.github.io/tags/dynamodb/</link>
+      <pubDate>Tue, 06 Feb 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://vdubois.github.io/tags/serverless/</guid>
+      <guid>https://vdubois.github.io/tags/dynamodb/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Typescript</title>
-      <link>https://vdubois.github.io/tags/typescript/</link>
+      <title>Javascript</title>
+      <link>https://vdubois.github.io/tags/javascript/</link>
       <pubDate>Thu, 21 Dec 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://vdubois.github.io/tags/typescript/</guid>
+      <guid>https://vdubois.github.io/tags/javascript/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Angular</title>
+      <link>https://vdubois.github.io/tags/angular/</link>
+      <pubDate>Sat, 16 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://vdubois.github.io/tags/angular/</guid>
       <description></description>
     </item>
     

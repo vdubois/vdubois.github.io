@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Ovh on Yet another dev blog</title>
+    <title>OVH on Yet another dev blog</title>
     <link>https://vdubois.github.io/tags/ovh/</link>
-    <description>Recent content in Ovh on Yet another dev blog</description>
+    <description>Recent content in OVH on Yet another dev blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>fr-fr</language>
     <lastBuildDate>Mon, 12 Feb 2018 00:00:00 +0000</lastBuildDate>

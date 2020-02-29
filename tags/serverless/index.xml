@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Serverless on Yet another dev blog</title>
@@ -43,10 +43,10 @@ Le tout premier problème rencontré est un problème assez évident : nous avio
     
     <item>
       <title>Mon premier module node : aws-sdk-fluent-builder</title>
-      <link>https://vdubois.github.io/2017/12/mon-premier-module-node--aws-sdk-fluent-builder/</link>
+      <link>https://vdubois.github.io/2017/12/mon-premier-module-node-aws-sdk-fluent-builder/</link>
       <pubDate>Thu, 21 Dec 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://vdubois.github.io/2017/12/mon-premier-module-node--aws-sdk-fluent-builder/</guid>
+      <guid>https://vdubois.github.io/2017/12/mon-premier-module-node-aws-sdk-fluent-builder/</guid>
       <description>Pourquoi encore un autre module node ? Depuis quelques mois je travaille sur un projet serverless pour un client. Nos développements sont réalisés principalement en Typescript (car nous avons une partie front Angular).
 Pour le back, nous utilisons le framework serverless afin de déployer nos lambdas et c&amp;rsquo;est un super framework. Dans les cuisines, serverless utilise AWS CloudFormation pour construire la stack applicative. On peut définir tout ce qu&amp;rsquo;on veut : lambdas, endpoints HTTP avec API Gateway, mais aussi tout ce qui est ressources compatibles Cloudformation.</description>
     </item>

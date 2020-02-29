@@ -35,7 +35,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.36" />
+<meta name="generator" content="Hugo 0.63.2" />
 
 
 <link rel="canonical" href="https://vdubois.github.io/" />
@@ -217,70 +217,13 @@
       
         <article class="post-entry">
   <header class="post-header">
-    <h3 class="post-title"><a href="https://vdubois.github.io/2018/02/critique-du-livre-serverless-architectures-on-aws-with-examples-using-aws-lambda/" class="post-link">Critique du livre Serverless architectures on AWS with examples using AWS Lambda</a></h3>
-    <p class="post-meta">@Vincent Dubois · Feb 14, 2018 · 5 min. de lecture</p>
+    <h3 class="post-title"><a href="https://vdubois.github.io/post/" class="post-link">Posts</a></h3>
+    <p class="post-meta">@Vincent Dubois · Feb 29, 2020 · 0 min. de lecture</p>
   </header>
   
-  <p class="post-summary">Voici une critique sans prétention de ce premier livre que j’entreprends sur Serverless alors que voilà quelques mois que j’utilise pleinement cette technologie de façon industrialisée sur un projet pour un client.
-Le plan du livre a l’air vraiment pas mal au premier abord. Tout tourne autour de la création d’un site web style Youtube de partage de vidéos. On monte notamment un pipeline de transcodage des vidéos postées par les utilisateurs en différents format à l’aide de lambdas, et de S3 pour la partie stockage.</p>
+  <p class="post-summary"></p>
   <footer class="post-footer">
-    <a class="read-more" href="https://vdubois.github.io/2018/02/critique-du-livre-serverless-architectures-on-aws-with-examples-using-aws-lambda/">Lire la suite →</a>
-  </footer>
-</article>
-
-      
-        <article class="post-entry">
-  <header class="post-header">
-    <h3 class="post-title"><a href="https://vdubois.github.io/2018/02/pas-%C3%A0-pas-pour-h%C3%A9berger-son-site-personnel-sur-aws/" class="post-link">Pas à pas pour héberger son site personnel sur AWS</a></h3>
-    <p class="post-meta">@Vincent Dubois · Feb 12, 2018 · 8 min. de lecture</p>
-  </header>
-  
-  <p class="post-summary">Dans cet article, j’aimerais partager la méthode que j’ai employé pour mettre en ligne mon site personnel sur AWS. En effet, j’ai eu du mal à trouver des articles complets sur la toile afin de paramétrer tout ça. Finalement, avec un peu de patience et de persévérance, je suis arrivé à mes fins.
-Nom de domaine La première étape a été l’achat du nom de domaine. J’ai choisi OVH car c’est un des registrars les moins chers, et aussi car il m’a été conseillé par un collègue freelance qui a l’habitude d’utiliser OVH pour ses clients.</p>
-  <footer class="post-footer">
-    <a class="read-more" href="https://vdubois.github.io/2018/02/pas-%C3%A0-pas-pour-h%C3%A9berger-son-site-personnel-sur-aws/">Lire la suite →</a>
-  </footer>
-</article>
-
-      
-        <article class="post-entry">
-  <header class="post-header">
-    <h3 class="post-title"><a href="https://vdubois.github.io/2018/02/optimiser-ses-requ%C3%AAtes-dynamodb/" class="post-link">Optimiser ses requêtes DynamoDB</a></h3>
-    <p class="post-meta">@Vincent Dubois · Feb 6, 2018 · 5 min. de lecture</p>
-  </header>
-  
-  <p class="post-summary">Récemment j’ai rencontré dans le cadre de mon projet quelques petits soucis de performances lors de l’utilisation de DynamoDB.
-Le tout premier problème rencontré est un problème assez évident : nous avions mis systématiquement sur tous nos différents environnements AWS des capacités en lecture et en écriture sur nos tables DynamoDB à 1. Cela veut dire que DynamoDB pouvait traiter une lecture ou une écriture en parallèle. L’application a bien fonctionné jusqu’au moment où nous avons eu quelques données et un peu de traffic car nos testeurs et ceux du client utilisaient l’application.</p>
-  <footer class="post-footer">
-    <a class="read-more" href="https://vdubois.github.io/2018/02/optimiser-ses-requ%C3%AAtes-dynamodb/">Lire la suite →</a>
-  </footer>
-</article>
-
-      
-        <article class="post-entry">
-  <header class="post-header">
-    <h3 class="post-title"><a href="https://vdubois.github.io/2017/12/mon-premier-module-node--aws-sdk-fluent-builder/" class="post-link">Mon premier module node : aws-sdk-fluent-builder</a></h3>
-    <p class="post-meta">@Vincent Dubois · Dec 21, 2017 · 2 min. de lecture</p>
-  </header>
-  
-  <p class="post-summary">Pourquoi encore un autre module node ? Depuis quelques mois je travaille sur un projet serverless pour un client. Nos développements sont réalisés principalement en Typescript (car nous avons une partie front Angular).
-Pour le back, nous utilisons le framework serverless afin de déployer nos lambdas et c’est un super framework. Dans les cuisines, serverless utilise AWS CloudFormation pour construire la stack applicative. On peut définir tout ce qu’on veut : lambdas, endpoints HTTP avec API Gateway, mais aussi tout ce qui est ressources compatibles Cloudformation.</p>
-  <footer class="post-footer">
-    <a class="read-more" href="https://vdubois.github.io/2017/12/mon-premier-module-node--aws-sdk-fluent-builder/">Lire la suite →</a>
-  </footer>
-</article>
-
-      
-        <article class="post-entry">
-  <header class="post-header">
-    <h3 class="post-title"><a href="https://vdubois.github.io/2017/12/formation-angular-de-z%C3%A9ro-%C3%A0-ninja-par-ninja-squad/" class="post-link">Formation Angular De Zéro à Ninja Par Ninja Squad</a></h3>
-    <p class="post-meta">@Vincent Dubois · Dec 16, 2017 · 2 min. de lecture</p>
-  </header>
-  
-  <p class="post-summary">Fin octobre, j’ai suivi la formation “Angular : de Zéro à Ninja animée par Jean Baptiste Nizet dans les locaux de ma société.
-Je tenais à faire un petit retour car cette formation est d’une qualité très élevée. Non seulement on apprend tout ce qui est nécessaire à être opérationnel sur du développement d’applications Angular, mais en plus, Ninja Squad nous donne accès à sa plateforme d’exercices de formation en ligne ainsi qu’à son ebook Angular.</p>
-  <footer class="post-footer">
-    <a class="read-more" href="https://vdubois.github.io/2017/12/formation-angular-de-z%C3%A9ro-%C3%A0-ninja-par-ninja-squad/">Lire la suite →</a>
+    <a class="read-more" href="https://vdubois.github.io/post/">Lire la suite →</a>
   </footer>
 </article>
 
@@ -289,7 +232,7 @@ Je tenais à faire un petit retour car cette formation est d’une qualité trè
     
   </section>
   <footer class="site-footer">
-  <p>© 2017-2018 Yet another dev blog</p>
+  <p>© 2017-2020 Yet another dev blog</p>
   <p>Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank">Nuo</a>.</p>
   
 </footer>
@@ -299,12 +242,16 @@ Je tenais à faire un petit retour car cette formation est d’une qualité trè
 <script src="/js/bundle.js"></script>
 
 
-<script>
-window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-ga('create', 'UA-111523320-1', 'auto');
-ga('send', 'pageview');
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-111523320-1', 'auto');
+	
+	ga('send', 'pageview');
+}
 </script>
-<script async src='//www.google-analytics.com/analytics.js'></script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
 
