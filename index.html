@@ -1,363 +1,509 @@
 <!DOCTYPE html>
-<html lang="fr-fr">
+<!--[if lt IE 8 ]><html class="no-js ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="no-js ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 8)|!(IE)]><!--><html class="no-js" lang="en"> <!--<![endif]-->
 <head>
 
-  <meta charset="utf-8" />
+   <meta charset="utf-8">
+    <meta name="description" content="Vincent Dubois - Développeur Kotlin, Java et Javascript">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-113966846-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
+        gtag('config', 'UA-113966846-1');
+    </script>
 
-  <title>
-  Posts
-   | Yet another dev blog
-</title>
+    <title>Vincent Dubois - Développeur Java / Javascript</title>
+	<meta name="description" content="">
+	<meta name="author" content="">
 
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
+   <link rel="stylesheet" href="css/default.css">
+	<link rel="stylesheet" href="css/layout.css">
+   <link rel="stylesheet" href="css/media-queries.css">
+   <link rel="stylesheet" href="css/magnific-popup.css">
 
+	<script src="js/modernizr.js"></script>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
 
-
-
-
-
-
-  <meta name="author" content="Vincent Dubois" />
-  <meta name="description" content="" />
-
-
-
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:site" content="@vdubois" />
-    <meta name="twitter:title" content="Posts" />
-    <meta name="twitter:description" content="" />
-    <meta name="twitter:image" content="https://vdubois.github.io/img/avatar.jpg" />
-
-
-
-  <meta property="og:type" content="article" />
-  <meta property="og:title" content="Posts" />
-  <meta property="og:description" content="" />
-  <meta property="og:url" content="https://vdubois.github.io/post/" />
-  <meta property="og:image" content="https://vdubois.github.io/img/avatar.jpg" />
-
-
-
-
-<meta name="generator" content="Hugo 0.63.2" />
-
-
-<link rel="canonical" href="https://vdubois.github.io/post/" />
-<link rel="alternative" href="/index.xml" title="Yet another dev blog" type="application/atom+xml" />
-
-
-<meta name="renderer" content="webkit" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<meta name="format-detection" content="telephone=no,email=no,adress=no" />
-<meta http-equiv="Cache-Control" content="no-transform" />
-
-
-<meta name="robots" content="index,follow" />
-<meta name="referrer" content="origin-when-cross-origin" />
-
-
-
-
-
-
-
-<meta name="apple-mobile-web-app-capable" content="yes" />
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-<meta name="apple-mobile-web-app-title" content="Yet another dev blog" />
-<meta name="msapplication-tooltip" content="Yet another dev blog" />
-<meta name='msapplication-navbutton-color' content="#5fbf5e" />
-<meta name="msapplication-TileColor" content="#5fbf5e" />
-<meta name="msapplication-TileImage" content="/img/tile-image-windows.png" />
-<link rel="icon" href="/img/favicon.ico" />
-<link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png" />
-<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png" />
-<link rel="icon" sizes="192x192" href="/img/touch-icon-android.png" />
-<link rel="apple-touch-icon" href="/img/touch-icon-apple.png" />
-<link rel="mask-icon" href="/img/safari-pinned-tab.svg" color="#5fbf5e" />
-
-
-
-<link rel="stylesheet" href="//cdn.bootcss.com/video.js/6.2.8/alt/video-js-cdn.min.css" />
-
-<link rel="stylesheet" href="/css/bundle.css" />
-
-
-
-  <!--[if lt IE 9]>
-    <script src="//cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
-    <script src="//cdn.bootcss.com/video.js/6.2.8/ie8/videojs-ie8.min.js"></script>
-  <![endif]-->
-
-<!--[if lte IE 11]>
-    <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
-  <![endif]-->
-
-
-<script src="//cdn.bootcss.com/object-fit-images/3.2.3/ofi.min.js"></script>
-
-
-<script src="//cdn.bootcss.com/smooth-scroll/12.1.4/js/smooth-scroll.polyfills.min.js"></script>
-
+	<link rel="shortcut icon" href="favicon.png" >
 
 </head>
-  <body>
 
-    <div class="suspension">
-      <a title="Go to top" class="to-top is-hide"><span class="icon icon-up"></span></a>
+<body>
 
-    </div>
+   <header id="home">
 
+      <nav id="nav-wrap">
 
-  <header class="site-header">
-  <img class="avatar" src="/img/avatar.png" alt="Avatar">
+         <a class="mobile-btn" href="#nav-wrap" title="Show navigation">Show navigation</a>
+	      <a class="mobile-btn" href="#" title="Hide navigation">Hide navigation</a>
 
-  <h2 class="title">Yet another dev blog</h2>
+         <ul id="nav" class="nav">
+            <li class="current"><a class="smoothscroll" href="#home">Accueil</a></li>
+            <li><a class="smoothscroll" href="#about">A mon sujet</a></li>
+	         <li><a class="smoothscroll" href="#resume">CV</a></li>
+            <li><a class="smoothscroll" href="#portfolio">Travaux</a></li>
+            <li><a class="smoothscroll" href="#contact">Contact</a></li>
+         </ul>
 
-  <p class="subtitle"></p>
-  <button class="menu-toggle" type="button">
-    <span class="icon icon-menu"></span>
-  </button>
-  <nav class="site-menu collapsed">
-    <h2 class="offscreen">Menu principal</h2>
-    <ul class="menu-list">
+      </nav>
 
+      <div class="row banner">
+         <div class="banner-text">
+            <h1 class="responsive-headline">Vincent Dubois</h1>
+             <h3>Je suis un <span class="important">Développeur Kotlin, Java et Javascript</span>.<br/>
+                 Mes domaines de pr&eacute;dilection sont le <span class="important">Domain Driven Design</span> et l'<span class="important">architecture hexagonale</span>.
+                 J'aime apporter un soin particulier au code afin qu'il soit le plus proche du m&eacute;tier possible.<br/>Vous pouvez <a class="smoothscroll important" href="#about">commencer à scroller</a>
+            pour en apprendre plus <a class="smoothscroll important" href="#about">à mon sujet</a>.</h3>
+            <hr />
+            <ul class="social">
+               <li><a href="https://twitter.com/vdubois" target="_blank"><i class="fa fa-twitter"></i></a></li>
+               <li><a href="https://github.com/vdubois" target="_blank"><i class="fa fa-github"></i></a></li>
+               <li><a href="https://vdubois.github.io" target="_blank"><i class="fa fa-rss"></i></a></li>
+               <li><a href="https://www.linkedin.com/in/vincent-dubois-5463b08b/" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+            </ul>
+         </div>
+      </div>
 
+      <p class="scrolldown">
+         <a class="smoothscroll" href="#about"><i class="icon-down-circle"></i></a>
+      </p>
 
+   </header>
 
-        <li class="menu-item
 
+   <section id="about">
 
+      <div class="row">
 
-              is-active
-            ">
-            <a href="/">Articles</a>
-          </li>
+         <div class="three columns">
 
-        <li class="menu-item
+            <img class="profile-pic"  src="images/profilepic.jpg" alt="" />
 
+         </div>
 
-            ">
-            <a href="https://github.com/vdubois">Github</a>
-          </li>
+         <div class="nine columns main-col">
 
-        <li class="menu-item
+            <h2>A mon sujet</h2>
 
+             <p>
+                 J'ai toujours été <span class="important">passionné</span> par la technique. Je suis en constante recherche de nouveaux défis technologiques ou de
+                 nouveautés qui me permettront d'assurer au mieux mes missions ou celles de mon équipe.
+             </p>
+             <p>
+                 <span class="important">Qu'est ce que le métier de développeur selon moi ?</span><br>Et bien avant tout, le métier d'un développeur n'est pas de produire
+                 des lignes de code. Il est de <span class="important">s'intéresser au métier</span> pour lequel il est censé coder, afin de retranscrire au plus proche de ce métier le code d'une application.
+             </p>
+             <p>
+                 <span class="important"><a href="https://en.wikipedia.org/wiki/Domain-driven_design" target="_blank">Domain Driven Design.</a></span> Dans le métier de développeur, discuter avec les experts métier est essentiel afin de comprendre leur
+                 besoin. Quel intérêt de réaliser un projet que les utilisateurs ne voudront pas ou ne pourront pas exploiter ? C'est pourquoi la démarche Domain Driven Design guide mes pas ces dernières années.
+             </p>
+             <p>
+                 <span class="important">Facilitateur.</span> Je suis en veille technologique constante afin de trouver de nouveaux outils ou de nouvelles méthodes dans le but
+                 d'améliorer l'expérience de développement de mon équipe. Apporter mon aide, que ce soit au sein de mon équipe ou auprès d'autres équipes fait partie de mon ADN.
+             </p>
+            <p>Les <span class="important">tests automatisés</span> sont à mon sens une brique essentielle d'un projet qui se passe bien et qui tient dans la durée. Un projet avec une base solide de tests automatisés est un projet dans lequel l'équipe sera sereine pour refactoriser ou apporter des modifications au code existant.
+            </p>
 
-            ">
-            <a href="/tags/">Tags</a>
-          </li>
+         </div> <!-- end .main-col -->
 
-    </ul>
-  </nav>
-  <nav class="social-menu collapsed">
-    <h2 class="offscreen">R&eacute;seaux sociaux</h2>
-    <ul class="social-list">
+      </div>
 
+   </section> <!-- About Section End-->
 
-      <li class="social-item">
-        <a href="mailto:dubois.vct@free.fr" title="Email"><span class="icon icon-email"></span></a>
-      </li>
 
+   <section id="resume">
 
-      <li class="social-item">
-        <a href="//github.com/vdubois" title="GitHub"><span class="icon icon-github"></span></a>
-      </li>
+      <div class="row work">
 
-      <li class="social-item">
-        <a href="//twitter.com/vdubois" title="Twitter"><span class="icon icon-twitter"></span></a>
-      </li>
+         <div class="three columns header-col">
+            <h1><span>Parcours</span></h1>
+         </div>
 
+         <div class="nine columns main-col">
 
+            <div class="row item">
 
+               <div class="twelve columns">
 
+                  <h3>Lectra</h3>
+                  <p class="info">Développeur Kotlin et TypeScript <span>&bull;</span> 2020 - Maintenant</p>
 
+               </div>
 
+            </div> <!-- item end -->
 
+            <div class="row item">
 
+               <div class="twelve columns">
 
+                  <h3>Maincare Solutions</h3>
+                  <p class="info">Développeur et Tech Lead Java / TypeScript <span>&bull;</span> 2018 - 2020</p>
 
+               </div>
 
+            </div> <!-- item end -->
 
+            <div class="row item">
 
+               <div class="twelve columns">
 
+                  <h3>SQLI Bordeaux - Centre de services</h3>
+                  <p class="info">Expert technique Java / Javascript <span>&bull;</span> 2012 - 2018</p>
 
+               </div>
 
+            </div>
 
+            <div class="row item">
 
+               <div class="twelve columns">
 
+                  <h3>SQLI Bordeaux</h3>
+                  <p class="info">Ingénieur Concepteur Développeur Java<span>&bull;</span> 2005 - 2012</p>
 
+               </div>
 
+            </div> <!-- item end -->
 
+             <div class="row item">
 
+                 <div class="twelve columns">
 
+                     <h3>Logica</h3>
+                     <p class="info">Concepteur Développeur Java<span>&bull;</span> 2000 - 2005</p>
 
+                 </div>
 
+             </div> <!-- item end -->
+         </div> <!-- main-col end -->
 
+      </div> <!-- End Work -->
 
 
-      <li class="social-item">
-        <a href="//www.linkedin.com/in/vincent-dubois-5463b08b" title="Linkedin"><span class="icon icon-linkedin"></span></a>
-      </li>
+      <div class="row skill">
 
+         <div class="three columns header-col">
+            <h1><span>Compétences</span></h1>
+         </div>
 
+         <div class="nine columns main-col">
 
+				<div class="bars">
 
+				   <ul class="skills">
+					   <li><span class="bar-expand kotlin"></span><em>Kotlin</em></li>
+                       <li><span class="bar-expand javaee"></span><em>Java EE / Spring</em></li>
+                       <li><span class="bar-expand ddd"></span><em>Domain Driven Design</em></li>
+                        <li><span class="bar-expand javascript"></span><em>Javascript / Typescript</em></li>
+						<li><span class="bar-expand vuejs"></span><em>Vue JS / React</em></li>
+						<li><span class="bar-expand html5"></span><em>HTML5 / CSS3</em></li>
+						<li><span class="bar-expand pipeline"></span><em>Continuous Delivery / Jenkins Pipeline</em></li>
+					</ul>
 
+				</div><!-- end skill-bars -->
 
+			</div> <!-- main-col end -->
 
-      <li class="social-item">
-        <a href="/index.xml"><span class="icon icon-rss" title="RSS"></span></a>
-      </li>
+      </div> <!-- End skills -->
 
-    </ul>
-  </nav>
-</header>
+       <div class="row education">
 
-  <section class="main post-list">
-    <header class="list-header offscreen">
-      <h2 class="list-label">Liste des articles</h2>
-    </header>
+           <div class="three columns header-col">
+               <h1><span>Formation</span></h1>
+           </div>
 
+           <div class="nine columns main-col">
 
+               <div class="row item">
 
-        <article class="post-entry">
-  <header class="post-header">
-    <h3 class="post-title"><a href="https://vdubois.github.io/2020/02/d%C3%A9j%C3%A0-6-ans-avec-intellij/" class="post-link">Déjà 6 ans avec IntelliJ</a></h3>
-    <p class="post-meta">@Vincent Dubois · Feb 29, 2020 · 7 min. de lecture</p>
-  </header>
+                   <div class="twelve columns">
+                       <h3>Formation Angular : de Zéro à Ninja</h3>
+                       <p class="info">Bordeaux <span>&bull;</span> Par <a href="http://ninja-squad.fr/formations/formation-angular" target="_blank">Ninja Squad</a> <span>&bull;</span> 2017</p>
+                   </div>
 
-  <p class="post-summary">Cela fait six ans que j’utilise IntelliJ Idea, aussi bien dans le cadre privé que dans le cadre professionnel.
-Après dix années passés à utiliser Eclipse, cela a été un changement conséquent, mais je ne regrette absolument pas. Ce que je regrette en revanche, c’est de ne pas avoir découvert IntelliJ plus tôt.
-IntelliJ, c’est avant tout un IDE construit autour d’une cohérence globale. Quand on utilise une fonctionnalité dans un contexte (quand on code en Java par exemple), on pourra retrouver un équivalent dans un autre contexte.</p>
-  <footer class="post-footer">
-    <a class="read-more" href="https://vdubois.github.io/2020/02/d%C3%A9j%C3%A0-6-ans-avec-intellij/">Lire la suite →</a>
-  </footer>
-</article>
-    
-        <article class="post-entry">
-  <header class="post-header">
-    <h3 class="post-title"><a href="https://vdubois.github.io/2018/02/critique-du-livre-serverless-architectures-on-aws-with-examples-using-aws-lambda/" class="post-link">Critique du livre Serverless architectures on AWS with examples using AWS Lambda</a></h3>
-    <p class="post-meta">@Vincent Dubois · Feb 14, 2018 · 5 min. de lecture</p>
-  </header>
-
-  <p class="post-summary">Voici une critique sans prétention de ce premier livre que j’entreprends sur Serverless alors que voilà quelques mois que j’utilise pleinement cette technologie de façon industrialisée sur un projet pour un client.
-Le plan du livre a l’air vraiment pas mal au premier abord. Tout tourne autour de la création d’un site web style Youtube de partage de vidéos. On monte notamment un pipeline de transcodage des vidéos postées par les utilisateurs en différents format à l’aide de lambdas, et de S3 pour la partie stockage.</p>
-  <footer class="post-footer">
-    <a class="read-more" href="https://vdubois.github.io/2018/02/critique-du-livre-serverless-architectures-on-aws-with-examples-using-aws-lambda/">Lire la suite →</a>
-  </footer>
-</article>
-
-
-        <article class="post-entry">
-  <header class="post-header">
-    <h3 class="post-title"><a href="https://vdubois.github.io/2018/02/pas-%C3%A0-pas-pour-h%C3%A9berger-son-site-personnel-sur-aws/" class="post-link">Pas à pas pour héberger son site personnel sur AWS</a></h3>
-    <p class="post-meta">@Vincent Dubois · Feb 12, 2018 · 8 min. de lecture</p>
-  </header>
-
-  <p class="post-summary">Dans cet article, j’aimerais partager la méthode que j’ai employé pour mettre en ligne mon site personnel sur AWS. En effet, j’ai eu du mal à trouver des articles complets sur la toile afin de paramétrer tout ça. Finalement, avec un peu de patience et de persévérance, je suis arrivé à mes fins.
-Nom de domaine La première étape a été l’achat du nom de domaine. J’ai choisi OVH car c’est un des registrars les moins chers, et aussi car il m’a été conseillé par un collègue freelance qui a l’habitude d’utiliser OVH pour ses clients.</p>
-  <footer class="post-footer">
-    <a class="read-more" href="https://vdubois.github.io/2018/02/pas-%C3%A0-pas-pour-h%C3%A9berger-son-site-personnel-sur-aws/">Lire la suite →</a>
-  </footer>
-</article>
-
-
-        <article class="post-entry">
-  <header class="post-header">
-    <h3 class="post-title"><a href="https://vdubois.github.io/2018/02/optimiser-ses-requ%C3%AAtes-dynamodb/" class="post-link">Optimiser ses requêtes DynamoDB</a></h3>
-    <p class="post-meta">@Vincent Dubois · Feb 6, 2018 · 5 min. de lecture</p>
-  </header>
-
-  <p class="post-summary">Récemment j’ai rencontré dans le cadre de mon projet quelques petits soucis de performances lors de l’utilisation de DynamoDB.
-Le tout premier problème rencontré est un problème assez évident : nous avions mis systématiquement sur tous nos différents environnements AWS des capacités en lecture et en écriture sur nos tables DynamoDB à 1. Cela veut dire que DynamoDB pouvait traiter une lecture ou une écriture en parallèle. L’application a bien fonctionné jusqu’au moment où nous avons eu quelques données et un peu de traffic car nos testeurs et ceux du client utilisaient l’application.</p>
-  <footer class="post-footer">
-    <a class="read-more" href="https://vdubois.github.io/2018/02/optimiser-ses-requ%C3%AAtes-dynamodb/">Lire la suite →</a>
-  </footer>
-</article>
-
-
-        <article class="post-entry">
-  <header class="post-header">
-    <h3 class="post-title"><a href="https://vdubois.github.io/2017/12/mon-premier-module-node-aws-sdk-fluent-builder/" class="post-link">Mon premier module node : aws-sdk-fluent-builder</a></h3>
-    <p class="post-meta">@Vincent Dubois · Dec 21, 2017 · 2 min. de lecture</p>
-  </header>
-
-  <p class="post-summary">Pourquoi encore un autre module node ? Depuis quelques mois je travaille sur un projet serverless pour un client. Nos développements sont réalisés principalement en Typescript (car nous avons une partie front Angular).
-Pour le back, nous utilisons le framework serverless afin de déployer nos lambdas et c’est un super framework. Dans les cuisines, serverless utilise AWS CloudFormation pour construire la stack applicative. On peut définir tout ce qu’on veut : lambdas, endpoints HTTP avec API Gateway, mais aussi tout ce qui est ressources compatibles Cloudformation.</p>
-  <footer class="post-footer">
-    <a class="read-more" href="https://vdubois.github.io/2017/12/mon-premier-module-node-aws-sdk-fluent-builder/">Lire la suite →</a>
-  </footer>
-</article>
-
-
-        <article class="post-entry">
-  <header class="post-header">
-    <h3 class="post-title"><a href="https://vdubois.github.io/2017/12/formation-angular-de-z%C3%A9ro-%C3%A0-ninja-par-ninja-squad/" class="post-link">Formation Angular De Zéro à Ninja Par Ninja Squad</a></h3>
-    <p class="post-meta">@Vincent Dubois · Dec 16, 2017 · 2 min. de lecture</p>
-  </header>
-
-  <p class="post-summary">Fin octobre, j’ai suivi la formation “Angular : de Zéro à Ninja animée par Jean Baptiste Nizet dans les locaux de ma société.
-Je tenais à faire un petit retour car cette formation est d’une qualité très élevée. Non seulement on apprend tout ce qui est nécessaire à être opérationnel sur du développement d’applications Angular, mais en plus, Ninja Squad nous donne accès à sa plateforme d’exercices de formation en ligne ainsi qu&#39;à son ebook Angular.</p>
-  <footer class="post-footer">
-    <a class="read-more" href="https://vdubois.github.io/2017/12/formation-angular-de-z%C3%A9ro-%C3%A0-ninja-par-ninja-squad/">Lire la suite →</a>
-  </footer>
-</article>
-
-
-
-
-  </section>
-  <footer class="site-footer">
-  <p>© 2017-2020 Yet another dev blog</p>
-  <p>Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank">Nuo</a>.</p>
-
-</footer>
-
-
-
-<script async src="//cdn.bootcss.com/video.js/6.2.8/alt/video.novtt.min.js"></script>
-<script async src="//cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [['$','$'], ['\\(','\\)']],
-      displayMath: [['$$','$$'], ['\[','\]']],
-      processEscapes: true,
-      processEnvironments: true,
-      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-      TeX: { equationNumbers: { autoNumber: "AMS" },
-      extensions: ["AMSmath.js", "AMSsymbols.js"] }
-    }
-  });
+               </div>
+
+               <div class="row item">
+
+                   <div class="twelve columns">
+                       <h3>Formation Google Cloud Platform fundamentals</h3>
+                       <p class="info">Bordeaux <span>&bull;</span> Par <a href="https://school.sfeir.com/project/cpa100/" target="_blank">SFEIR</a> <span>&bull;</span> 2017</p>
+                   </div>
+
+               </div>
+
+               <div class="row item">
+
+                   <div class="twelve columns">
+                       <h3>Conférence Devoxx France</h3>
+                       <p class="info">Paris <span>&bull;</span> 2014, 2017, 2018</p>
+                   </div>
+
+               </div>
+
+               <div class="row item">
+
+                   <div class="twelve columns">
+                       <h3>Conférence BDX/IO</h3>
+                       <p class="info">Bordeaux <span>&bull;</span> 2014, 2015, 2016, 2017, 2018 et 2019</p>
+                   </div>
+
+               </div>
+
+               <div class="row item">
+
+                   <div class="twelve columns">
+                       <h3>DUT Informatique</h3>
+                       <p class="info">Université Paul Sabatier, Toulouse <span>&bull;</span> 2000</p>
+                   </div>
+
+               </div>
+           </div>
+
+       </div>
+
+   </section>
+
+
+   <section id="portfolio">
+
+      <div class="row">
+
+         <div class="twelve columns collapsed">
+
+            <h1>Mes projets open-source.</h1>
+
+            <!-- portfolio-wrapper -->
+            <div id="portfolio-wrapper" class="bgrid-quarters s-bgrid-thirds cf">
+
+          	   <div class="columns portfolio-item">
+                  <div class="item-wrap">
+
+                     <a href="https://github.com/vdubois/typescript-inject" target="_blank">
+                        <img alt="" src="images/portfolio/ts.png">
+                        <div class="overlay">
+                           <div class="portfolio-item-meta">
+          					      <h5>typescript-inject</h5>
+                              <p>Simple Typescript dependency injection library</p>
+          					   </div>
+                        </div>
+                        <div class="link-icon"><i class="icon-plus"></i></div>
+                     </a>
+
+                  </div>
+          		</div> <!-- item end -->
+
+               <div class="columns portfolio-item">
+                  <div class="item-wrap">
+
+                     <a href="https://github.com/vdubois/aws-sdk-fluent-builder" target="_blank">
+                        <img alt="" src="images/portfolio/lambda.png">
+                        <div class="overlay">
+                           <div class="portfolio-item-meta">
+          					      <h5>aws-sdk-fluent-builder</h5>
+                              <p>Fluent Typescript builder API as an alternative for the classic aws-sdk library</p>
+          					   </div>
+                        </div>
+                        <div class="link-icon"><i class="icon-plus"></i></div>
+                     </a>
+
+                  </div>
+          		</div> <!-- item end -->
+
+               <div class="columns portfolio-item">
+                  <div class="item-wrap">
+
+                     <a href="https://github.com/vdubois/aws-lambda-utils" target="_blank">
+                        <img alt="" src="images/portfolio/lambda.png">
+                        <div class="overlay">
+                           <div class="portfolio-item-meta">
+          					      <h5>aws-lambda-utils</h5>
+                              <p>Lambda utils for use in serverless projects (constants, helper functions, ...)</p>
+          					   </div>
+                        </div>
+                        <div class="link-icon"><i class="icon-plus"></i></div>
+                     </a>
+
+                  </div>
+          		</div> <!-- item end -->
+
+                <div class="columns portfolio-item">
+                    <div class="item-wrap">
+
+                        <a href="#modal-04" title="">
+                            <img alt="" src="images/portfolio/lambda.png">
+                            <div class="overlay">
+                                <div class="portfolio-item-meta">
+                                    <h5>serverless-template-aws-nodejs-typescript</h5>
+                                    <p>Serverless template for NodeJs using Typescript</p>
+                                </div>
+                            </div>
+                            <div class="link-icon"><i class="icon-plus"></i></div>
+                        </a>
+
+                    </div>
+                </div> <!-- item end -->
+
+            </div> <!-- portfolio-wrapper end -->
+
+         </div> <!-- twelve columns end -->
+
+
+          <div id="modal-04" class="popup-modal mfp-hide">
+
+              <img class="scale-with-grid" src="images/portfolio/lambda.png" alt="" />
+
+              <div class="description-box">
+                  <h4>serverless-template-aws-nodejs-typescript</h4>
+                  <p>Serverless template for NodeJs using Typescript. Contains a lot of boilerplate code for project architecture, dependency injection, ...<br/><br/>
+                  Use it with 'serverless create --template-url https://github.com/vdubois/serverless-template-aws-nodejs-typescript --name my-new-project'</p>
+                  <span class="categories"><i class="fa fa-tag"></i>Serverless, template, NodeJS, Typescript</span>
+              </div>
+
+              <div class="link-box">
+                  <a href="https://github.com/vdubois/serverless-template-aws-nodejs-typescript" target="_blank">Détails</a>
+                  <a class="popup-modal-dismiss">Fermer</a>
+              </div>
+
+          </div><!-- modal-04 End -->
+
+      </div> <!-- row End -->
+
+   </section> <!-- Portfolio Section End-->
+
+   <!-- Contact Section
+   ================================================== -->
+   <section id="contact">
+
+         <div class="row section-head">
+
+            <div class="two columns header-col">
+
+               <h1><span>Formulaire de contact</span></h1>
+
+            </div>
+
+            <div class="ten columns">
+
+                  <p class="lead">Si vous souhaitez me contacter, vous pouvez me laisser un message à l'aide du formulaire ci-dessous.</p>
+
+            </div>
+
+         </div>
+
+         <div class="row">
+
+            <div class="eight columns">
+
+                <!-- contact-warning -->
+                <div id="message-warning"></div>
+                <!-- contact-success -->
+                <div id="message-success">
+                    <i class="fa fa-check"></i>Votre message a &eacute;t&eacute; envoy&eacute;, merci !<br>
+                </div>
+
+                <!-- form -->
+               <form action="" method="post" id="contactForm" name="contactForm">
+					<fieldset>
+
+                  <div>
+                       <label for="contactName">Nom <span class="required">*</span></label>
+                       <input type="text" value="" size="35" id="contactName" name="contactName">
+                  </div>
+
+                  <div>
+                       <label for="contactEmail">Email <span class="required">*</span></label>
+                       <input type="text" value="" size="35" id="contactEmail" name="contactEmail">
+                  </div>
+
+                  <div>
+                       <label for="contactSubject">Sujet</label>
+                       <input type="text" value="" size="35" id="contactSubject" name="contactSubject">
+                  </div>
+
+                  <div>
+                     <label for="contactMessage">Message <span class="required">*</span></label>
+                     <textarea cols="50" rows="10" id="contactMessage" name="contactMessage"></textarea>
+                  </div>
+
+                  <div class="g-recaptcha" data-sitekey="6LcY0EIUAAAAAIPFHMVDif_dqBqz_1Wh89-aY0Sb"></div>
+
+                  <div>
+                     <button class="submit">Envoyer</button>
+                     <span id="image-loader">
+                        <img alt="" src="images/loader.gif">
+                     </span>
+                  </div>
+
+					</fieldset>
+				   </form> <!-- Form End -->
+
+            </div>
+
+
+            <aside class="four columns footer-widgets">
+
+               <div class="widget widget_tweets">
+                   <a class="twitter-timeline" data-lang="fr" data-width="400" data-height="580" data-theme="dark" href="https://twitter.com/vdubois?ref_src=twsrc%5Etfw">Tweets de @vdubois</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+		       </div>
+
+            </aside>
+
+      </div>
+
+   </section> <!-- Contact Section End-->
+
+
+   <!-- footer
+   ================================================== -->
+   <footer>
+
+      <div class="row">
+
+         <div class="twelve columns">
+
+            <ul class="social-links">
+               <li><a href="https://twitter.com/vdubois" target="_blank"><i class="fa fa-twitter"></i></a></li>
+               <li><a href="https://github.com/vdubois" target="_blank"><i class="fa fa-github"></i></a></li>
+               <li><a href="https://vdubois.github.io" target="_blank"><i class="fa fa-rss"></i></a></li>
+               <li><a href="https://www.linkedin.com/in/vincent-dubois-5463b08b/" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+            </ul>
+
+            <ul class="copyright">
+               <li>&copy; Copyright 2020 Vincent Dubois</li>
+               <li>Design by <a href="http://www.styleshout.com/" title="Styleshout" target="_blank">Styleshout</a></li>
+            </ul>
+
+         </div>
+
+         <div id="go-top"><a class="smoothscroll" title="Back to Top" href="#home"><i class="icon-up-open"></i></a></div>
+
+      </div>
+
+   </footer> <!-- Footer End-->
+
+   <!-- Java Script
+   ================================================== -->
+   <script src="js/jquery-1.10.2.min.js"></script>
+   <script type="text/javascript" src="js/jquery-migrate-1.2.1.min.js"></script>
+
+   <script src="js/jquery.flexslider.js"></script>
+   <script src="js/waypoints.js"></script>
+   <script src="js/jquery.fittext.js"></script>
+   <script src="js/init.js"></script>
+   <script type="text/javascript">
+;window.NREUM||(NREUM={});NREUM.init={privacy:{cookies_enabled:true}};
+window.NREUM||(NREUM={}),__nr_require=function(e,n,t){function r(t){if(!n[t]){var i=n[t]={exports:{}};e[t][0].call(i.exports,function(n){var i=e[t][1][n];return r(i||n)},i,i.exports)}return n[t].exports}if("function"==typeof __nr_require)return __nr_require;for(var i=0;i<t.length;i++)r(t[i]);return r}({1:[function(e,n,t){function r(){}function i(e,n,t){return function(){return o(e,[u.now()].concat(c(arguments)),n?null:this,t),n?void 0:this}}var o=e("handle"),a=e(5),c=e(6),f=e("ee").get("tracer"),u=e("loader"),s=NREUM;"undefined"==typeof window.newrelic&&(newrelic=s);var d=["setPageViewName","setCustomAttribute","setErrorHandler","finished","addToTrace","inlineHit","addRelease"],p="api-",l=p+"ixn-";a(d,function(e,n){s[n]=i(p+n,!0,"api")}),s.addPageAction=i(p+"addPageAction",!0),s.setCurrentRouteName=i(p+"routeName",!0),n.exports=newrelic,s.interaction=function(){return(new r).get()};var m=r.prototype={createTracer:function(e,n){var t={},r=this,i="function"==typeof n;return o(l+"tracer",[u.now(),e,t],r),function(){if(f.emit((i?"":"no-")+"fn-start",[u.now(),r,i],t),i)try{return n.apply(this,arguments)}catch(e){throw f.emit("fn-err",[arguments,this,e],t),e}finally{f.emit("fn-end",[u.now()],t)}}}};a("actionText,setName,setAttribute,save,ignore,onEnd,getContext,end,get".split(","),function(e,n){m[n]=i(l+n)}),newrelic.noticeError=function(e,n){"string"==typeof e&&(e=new Error(e)),o("err",[e,u.now(),!1,n])}},{}],2:[function(e,n,t){function r(e,n){var t=e.getEntries();t.forEach(function(e){"first-paint"===e.name?d("timing",["fp",Math.floor(e.startTime)]):"first-contentful-paint"===e.name&&d("timing",["fcp",Math.floor(e.startTime)])})}function i(e,n){var t=e.getEntries();t.length>0&&d("lcp",[t[t.length-1]])}function o(e){e.getEntries().forEach(function(e){e.hadRecentInput||d("cls",[e])})}function a(e){if(e instanceof m&&!g){var n=Math.round(e.timeStamp),t={type:e.type};n<=p.now()?t.fid=p.now()-n:n>p.offset&&n<=Date.now()?(n-=p.offset,t.fid=p.now()-n):n=p.now(),g=!0,d("timing",["fi",n,t])}}function c(e){d("pageHide",[p.now(),e])}if(!("init"in NREUM&&"page_view_timing"in NREUM.init&&"enabled"in NREUM.init.page_view_timing&&NREUM.init.page_view_timing.enabled===!1)){var f,u,s,d=e("handle"),p=e("loader"),l=e(4),m=NREUM.o.EV;if("PerformanceObserver"in window&&"function"==typeof window.PerformanceObserver){f=new PerformanceObserver(r);try{f.observe({entryTypes:["paint"]})}catch(v){}u=new PerformanceObserver(i);try{u.observe({entryTypes:["largest-contentful-paint"]})}catch(v){}s=new PerformanceObserver(o);try{s.observe({type:"layout-shift",buffered:!0})}catch(v){}}if("addEventListener"in document){var g=!1,y=["click","keydown","mousedown","pointerdown","touchstart"];y.forEach(function(e){document.addEventListener(e,a,!1)})}l(c)}},{}],3:[function(e,n,t){function r(e,n){if(!i)return!1;if(e!==i)return!1;if(!n)return!0;if(!o)return!1;for(var t=o.split("."),r=n.split("."),a=0;a<r.length;a++)if(r[a]!==t[a])return!1;return!0}var i=null,o=null,a=/Version\/(\S+)\s+Safari/;if(navigator.userAgent){var c=navigator.userAgent,f=c.match(a);f&&c.indexOf("Chrome")===-1&&c.indexOf("Chromium")===-1&&(i="Safari",o=f[1])}n.exports={agent:i,version:o,match:r}},{}],4:[function(e,n,t){function r(e){function n(){e(a&&document[a]?document[a]:document[i]?"hidden":"visible")}"addEventListener"in document&&o&&document.addEventListener(o,n,!1)}n.exports=r;var i,o,a;"undefined"!=typeof document.hidden?(i="hidden",o="visibilitychange",a="visibilityState"):"undefined"!=typeof document.msHidden?(i="msHidden",o="msvisibilitychange"):"undefined"!=typeof document.webkitHidden&&(i="webkitHidden",o="webkitvisibilitychange",a="webkitVisibilityState")},{}],5:[function(e,n,t){function r(e,n){var t=[],r="",o=0;for(r in e)i.call(e,r)&&(t[o]=n(r,e[r]),o+=1);return t}var i=Object.prototype.hasOwnProperty;n.exports=r},{}],6:[function(e,n,t){function r(e,n,t){n||(n=0),"undefined"==typeof t&&(t=e?e.length:0);for(var r=-1,i=t-n||0,o=Array(i<0?0:i);++r<i;)o[r]=e[n+r];return o}n.exports=r},{}],7:[function(e,n,t){n.exports={exists:"undefined"!=typeof window.performance&&window.performance.timing&&"undefined"!=typeof window.performance.timing.navigationStart}},{}],ee:[function(e,n,t){function r(){}function i(e){function n(e){return e&&e instanceof r?e:e?f(e,c,o):o()}function t(t,r,i,o){if(!p.aborted||o){e&&e(t,r,i);for(var a=n(i),c=v(t),f=c.length,u=0;u<f;u++)c[u].apply(a,r);var d=s[w[t]];return d&&d.push([b,t,r,a]),a}}function l(e,n){h[e]=v(e).concat(n)}function m(e,n){var t=h[e];if(t)for(var r=0;r<t.length;r++)t[r]===n&&t.splice(r,1)}function v(e){return h[e]||[]}function g(e){return d[e]=d[e]||i(t)}function y(e,n){u(e,function(e,t){n=n||"feature",w[t]=n,n in s||(s[n]=[])})}var h={},w={},b={on:l,addEventListener:l,removeEventListener:m,emit:t,get:g,listeners:v,context:n,buffer:y,abort:a,aborted:!1};return b}function o(){return new r}function a(){(s.api||s.feature)&&(p.aborted=!0,s=p.backlog={})}var c="nr@context",f=e("gos"),u=e(5),s={},d={},p=n.exports=i();p.backlog=s},{}],gos:[function(e,n,t){function r(e,n,t){if(i.call(e,n))return e[n];var r=t();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(e,n,{value:r,writable:!0,enumerable:!1}),r}catch(o){}return e[n]=r,r}var i=Object.prototype.hasOwnProperty;n.exports=r},{}],handle:[function(e,n,t){function r(e,n,t,r){i.buffer([e],r),i.emit(e,n,t)}var i=e("ee").get("handle");n.exports=r,r.ee=i},{}],id:[function(e,n,t){function r(e){var n=typeof e;return!e||"object"!==n&&"function"!==n?-1:e===window?0:a(e,o,function(){return i++})}var i=1,o="nr@id",a=e("gos");n.exports=r},{}],loader:[function(e,n,t){function r(){if(!x++){var e=E.info=NREUM.info,n=l.getElementsByTagName("script")[0];if(setTimeout(s.abort,3e4),!(e&&e.licenseKey&&e.applicationID&&n))return s.abort();u(w,function(n,t){e[n]||(e[n]=t)});var t=a();f("mark",["onload",t+E.offset],null,"api"),f("timing",["load",t]);var r=l.createElement("script");r.src="https://"+e.agent,n.parentNode.insertBefore(r,n)}}function i(){"complete"===l.readyState&&o()}function o(){f("mark",["domContent",a()+E.offset],null,"api")}function a(){return O.exists&&performance.now?Math.round(performance.now()):(c=Math.max((new Date).getTime(),c))-E.offset}var c=(new Date).getTime(),f=e("handle"),u=e(5),s=e("ee"),d=e(3),p=window,l=p.document,m="addEventListener",v="attachEvent",g=p.XMLHttpRequest,y=g&&g.prototype;NREUM.o={ST:setTimeout,SI:p.setImmediate,CT:clearTimeout,XHR:g,REQ:p.Request,EV:p.Event,PR:p.Promise,MO:p.MutationObserver};var h=""+location,w={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-1177.min.js"},b=g&&y&&y[m]&&!/CriOS/.test(navigator.userAgent),E=n.exports={offset:c,now:a,origin:h,features:{},xhrWrappable:b,userAgent:d};e(1),e(2),l[m]?(l[m]("DOMContentLoaded",o,!1),p[m]("load",r,!1)):(l[v]("onreadystatechange",i),p[v]("onload",r)),f("mark",["firstbyte",c],null,"api");var x=0,O=e(7)},{}],"wrap-function":[function(e,n,t){function r(e){return!(e&&e instanceof Function&&e.apply&&!e[a])}var i=e("ee"),o=e(6),a="nr@original",c=Object.prototype.hasOwnProperty,f=!1;n.exports=function(e,n){function t(e,n,t,i){function nrWrapper(){var r,a,c,f;try{a=this,r=o(arguments),c="function"==typeof t?t(r,a):t||{}}catch(u){p([u,"",[r,a,i],c])}s(n+"start",[r,a,i],c);try{return f=e.apply(a,r)}catch(d){throw s(n+"err",[r,a,d],c),d}finally{s(n+"end",[r,a,f],c)}}return r(e)?e:(n||(n=""),nrWrapper[a]=e,d(e,nrWrapper),nrWrapper)}function u(e,n,i,o){i||(i="");var a,c,f,u="-"===i.charAt(0);for(f=0;f<n.length;f++)c=n[f],a=e[c],r(a)||(e[c]=t(a,u?c+i:i,o,c))}function s(t,r,i){if(!f||n){var o=f;f=!0;try{e.emit(t,r,i,n)}catch(a){p([a,t,r,i])}f=o}}function d(e,n){if(Object.defineProperty&&Object.keys)try{var t=Object.keys(e);return t.forEach(function(t){Object.defineProperty(n,t,{get:function(){return e[t]},set:function(n){return e[t]=n,n}})}),n}catch(r){p([r])}for(var i in e)c.call(e,i)&&(n[i]=e[i]);return n}function p(n){try{e.emit("internal-error",n)}catch(t){}}return e||(e=i),t.inPlace=u,t.flag=a,t}},{}]},{},["loader"]);
+;NREUM.loader_config={accountID:"2883173",trustKey:"2883173",agentID:"79626030",licenseKey:"NRJS-005d4ad3af9e577b345",applicationID:"79626030"}
+;NREUM.info={beacon:"bam.eu01.nr-data.net",errorBeacon:"bam.eu01.nr-data.net",licenseKey:"NRJS-005d4ad3af9e577b345",applicationID:"79626030",sa:1}
 </script>
-<script type="text/x-mathjax-config">
-  // Fix <code> tags after MathJax finishes running. This is a
-  // hack to overcome a shortcoming of Markdown. Discussion at
-  // https://github.com/mojombo/jekyll/issues/199
-  MathJax.Hub.Queue(() => {
-    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
-  });
-</script>
 
-<script src="/js/bundle.js"></script>
+</body>
 
-
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-111523320-1', 'auto');
-
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
-
-
-
-
-  </body>
 </html>
