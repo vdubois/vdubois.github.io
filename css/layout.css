@@ -42,6 +42,8 @@ header {
 
 /* vertically center banner section */
 header:before {
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
    content: '';
    display: inline-block;
    vertical-align: middle;
@@ -58,7 +60,7 @@ header .banner {
 
 header .banner-text { width: 100%; }
 header .banner-text h1 {
-   font: 90px/1.1em 'opensans-bold', sans-serif;
+   font: 72px/1.1em 'opensans-bold', sans-serif;
    color: #fff;
    letter-spacing: -2px;
    margin: 0 auto 18px auto;
