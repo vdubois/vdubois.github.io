@@ -819,3 +819,12 @@ properly.
     border-radius: 50%;
     margin-top: 60px;
 }
+
+@media only screen and (max-width: 460px) {
+    .photo {
+        width: 160px;
+        height: 160px;
+        border-radius: 50%;
+        margin-top: 40px;
+    }
+}
