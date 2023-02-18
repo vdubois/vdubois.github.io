@@ -273,6 +273,10 @@ ul#nav li.current a { color: #F06000; }
    margin-bottom: 18px;
    margin-top: 9px;
 }
+#resume .info strong {
+    font: 16px/24px 'librebaskerville-italic', serif;
+    font-weight: bold;
+}
 #resume .info span {
    margin-right: 5px;
    margin-left: 5px;
@@ -1041,5 +1045,20 @@ footer .social-links li:first-child { margin-left: 0; }
 
 span.important {
     font-weight: bold;
-    color: #ddd !important;
+    color: white !important;
+}
+
+.livres-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.livre {
+    /*width: 230px;*/
+}
+
+.livre img {
+    height: 300px;
 }
