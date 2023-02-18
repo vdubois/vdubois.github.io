@@ -204,7 +204,7 @@ ul#nav li.current a { color: #F06000; }
 }
 #about p {
    line-height: 30px;
-   color: #7A7A7A;
+   color: #b9b9b9;
 }
 #about .profile-pic {
    position: relative;
@@ -341,12 +341,12 @@ ul#nav li.current a { color: #F06000; }
   	-webkit-animation: photoshop 1s ease;
 }
 .javascript {
-  	width: 75%;
+  	width: 70%;
   	-moz-animation: illustrator 1s ease;
   	-webkit-animation: illustrator 1s ease;
 }
 .vuejs {
-  	width: 75%;
+  	width: 65%;
   	-moz-animation: wordpress 1s ease;
   	-webkit-animation: wordpress 1s ease;
 }
@@ -1061,4 +1061,12 @@ span.important {
 
 .livre img {
     height: 300px;
+}
+
+a span.important {
+    text-decoration: underline;
+}
+
+#lien-cv {
+    text-decoration: underline;
 }
